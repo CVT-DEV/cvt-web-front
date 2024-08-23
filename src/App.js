@@ -1,5 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+import "@govbr/dsgov/dist/dsgov.min.css";
 
 function App() {
   return (
