@@ -1,11 +1,15 @@
 import "./App.css";
 import Header from "./components/Header";
+import Login from "./Login"
 
 import "@govbr-ds/core/dist/core.min.css";
 
 function App() {
   return (
-    <Header/>
+    <div>
+      <Header/>
+      <Login/>
+    </div>
   );
 }
 
