@@ -18,6 +18,17 @@ function Login() {
         left: 332,
         top: 59
         }}>CVT-Espacial</h2>
+
+        <h3 style={{ 
+        fontFamily: "Rawline", 
+        fontSize: "29.3",
+        color: "#1351B4",
+        width: 219,
+        height: 99,
+        position: "absolute",
+        left: 343,
+        top: 108
+        }}>Faça seu login</h3>
     </div>
   );
 }
