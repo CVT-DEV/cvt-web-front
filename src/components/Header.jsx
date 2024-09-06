@@ -1,15 +1,9 @@
-
 import "@govbr-ds/core/dist/core.min.css";
 import logoCvt from "../logo-cvt.png";
 
 function Header() {
   return (
-    <header class="br-header" style={
-      { 
-        width: 1227, 
-        height: 145, 
-        left: 26, 
-        top: 31 }}>
+    <header class="br-header">
       <div class="container-lg">
         <div class="header-top">
           <div class="header-logo">
