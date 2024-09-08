@@ -1,5 +1,5 @@
 import "@govbr-ds/core/dist/core.min.css";
-import logoCvt from "../logo-cvt.png";
+import logoCvt from "../assets/logo-cvt-azul.png";
 
 function Header() {
   return (
