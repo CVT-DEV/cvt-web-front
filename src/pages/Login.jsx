@@ -1,14 +1,19 @@
 import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function TelaLogin() {
+
+  const navigate = useNavigate();
+
+  function handleLogin () {
+    navigate("/inicio");
+  }
 
   return (
     <>
     <div style={styles.pageContainer}>
-      <div style={styles.footerUp}>
         <Header/>
         <div style={styles.content}>
           <h2 style={styles.title}>CVT-Espacial</h2>
@@ -27,11 +32,10 @@ function Login() {
               </div>
             </div>
           </div>
-          <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">
-            <Link to="/inicio">Entrar</Link>
+          <button onClick={handleLogin} class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">   
+            Entrar
           </button>
         </div>
-      </div>
       <div style={styles.footerContainer}>
         <Footer/>
       </div>
@@ -43,11 +47,8 @@ function Login() {
 
 const styles = {
   pageContainer: {
-      position: "relative", 
-      minHeight: "100vh"
-  },
-  footerUp: {
-      paddingbottom: "48px"
+    position: "relative",
+    minHeight: "100vh"
   },
   content: {
     position: "absolute",
@@ -55,7 +56,8 @@ const styles = {
     top: 166,
     width: 884,
     height: 548,
-    textAlign: "center"
+    textAlign: "center",
+    paddingbottom: "48px"
   },
   title: {
     fontSize: "var(--font-size-scale-up-05)",
@@ -86,4 +88,4 @@ const styles = {
 },
 }
 
-export default Login;
+export default TelaLogin;

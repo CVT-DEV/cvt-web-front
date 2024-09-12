@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
-import DiaEspacial from "./pages/DiaEspacial";
+import DiaEspacial from "./pages/Galeria";
 
 import "@govbr-ds/core/dist/core.min.css";
 
@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route index element={<Login />}/>
         <Route path="inicio" element={<Inicio />}/>
-        <Route path="dia-espacial" element={<DiaEspacial />}/>
+        <Route path="galeria" element={<DiaEspacial />}/>
       </Routes>
     </BrowserRouter>
   );

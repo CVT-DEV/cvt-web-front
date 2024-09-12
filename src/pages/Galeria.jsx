@@ -10,7 +10,7 @@ function DiaEspacial() {
       <div style={styles.footerUp}>
         <Header/>
         <div style={styles.content}>
-          <h3 style={styles.subtitle}>Dia Espacial</h3>
+          <h3 style={styles.subtitle}>Galeria</h3>
         </div>
       </div>
       <div style={styles.footerContainer}>
