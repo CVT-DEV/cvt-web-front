@@ -1,12 +1,16 @@
 import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Input from "../components/Input";
+import Message from "../components/Message";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import { useState } from "react";
 
 function TelaLogin() {
 
   const navigate = useNavigate();
+  const [ error , setError ] = useState("");
 
   function handleLogin (e) {
 
@@ -29,7 +33,7 @@ function TelaLogin() {
     .catch(function (error) {
       console.log(error);
       
-      alert("Usuário e/ou senha inválidos. ");
+      setError("Usuário e/ou senha inválidos.");    
     })
   }
 
@@ -42,19 +46,10 @@ function TelaLogin() {
           <h3 style={styles.subtitle}>Faça seu login</h3>
 
           <form method="post" onSubmit={handleLogin}>
+           {error && <Message message={error}/>}
             <div style = {styles.inputContainer}>
-              <div class="col-sm-10 col-lg-8 mb-3">
-                <div class="br-input input-highlight">
-                  <label class="sr-only" htmlFor="input-highlight-labeless"></label>
-                  <input name="email" id="input-highlight-labeless" type="text" placeholder="Insira seu e-mail"/>
-                </div>
-              </div>
-              <div class="col-sm-10 col-lg-8 mb-3">
-                <div class="br-input input-highlight">
-                  <label class="sr-only" htmlFor="input-highlight-labeless"></label>
-                  <input name="senha" id="input-highlight-labeless" type="text" placeholder="Insira sua senha"/>
-                </div>
-              </div>
+              <Input nome="email" placeholder="Insira seu e-mail"/>
+              <Input nome="senha" placeholder="Insira sua senha"/>
             </div>
             <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="submit">   
               Entrar
