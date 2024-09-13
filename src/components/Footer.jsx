@@ -25,7 +25,7 @@ function Footer () {
 const styles = {
     logosContainer: {
         display: "flex",
-        justifyContent: "space-around"    
+        justifyContent: "space-around"
     }
 }
 
