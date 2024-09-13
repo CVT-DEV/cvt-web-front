@@ -24,12 +24,13 @@ function TelaLogin() {
 
       console.log(localStorage.getItem('@cvtespacial-web/token'));
 
+      navigate("/inicio");
     })
     .catch(function (error) {
-      console.log("Não autorizado!");
+      console.log(error);
+      
+      alert("Usuário e/ou senha inválidos. ");
     })
-
-    navigate("/inicio");
   }
 
   return (
