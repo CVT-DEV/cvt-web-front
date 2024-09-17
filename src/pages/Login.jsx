@@ -71,9 +71,7 @@ const styles = {
     minHeight: "100vh"
   },
   content: {
-    position: "absolute",
-    left: 198,
-    top: 140,
+    margin: "auto",
     width: 884,
     height: 548,
     textAlign: "center",
@@ -103,8 +101,7 @@ const styles = {
   footerContainer: {
     position: "absolute",
     bottom: 0,
-    width: "100%", 
-    height: "48px"
+    width: "100%"
 },
 }
 
