@@ -1,27 +1,45 @@
 import React from "react";
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import FooterInfo from '../components/FooterInfo';
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileLines, faImages, faNewspaper, faRocket, faShuttleSpace, faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons';
+import { faFileLines, faImages, faNewspaper, faShuttleSpace, faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons';
 
 
 function Inicio() {
 
   const navigate = useNavigate();
 
-  function navigateGaleria () {
-    navigate("/galeria");
+  function handleClick(page) {
+    switch(page) {
+      case 'galeria':
+        navigate("/galeria");
+        break;
+      case 'materiaisDidaticos':
+        navigate("/materiaisDidaticos");
+        break;
+      case 'noticias':
+        navigate("/noticias");
+        break;
+      case 'paginasUteis':
+        navigate("/paginasUteis");
+        break;
+      case 'diaEspacial':
+        navigate("/diaEspacial");
+        break;
+      default:
+        console.log("Nenhuma página especificada.");
+        break;
+    }
   }
 
   return (
     <>
     <div style={styles.pageContainer}>
-      <div style={styles.footerUp}>
         <Header/>
         <div style={styles.content}>
           <div style={styles.row}>
-            <div style={styles.toPageDiv}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
               <div style={styles.toPageText}>
                 <p style={styles.pageName}>Galeria</p>
               </div>
@@ -29,7 +47,7 @@ function Inicio() {
                 <FontAwesomeIcon icon={faImages} size="3x" color="var(--blue-warm-vivid-70)"/>         
               </div>
             </div>
-            <div style={styles.toPageDiv}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('materiaisDidaticos')}>
               <div style={styles.toPageText}>
                   <p style={styles.pageName}>Materiais Didáticos</p>
               </div>
@@ -37,7 +55,7 @@ function Inicio() {
                 <FontAwesomeIcon icon={faFileLines} size="3x" color="var(--blue-warm-vivid-70)"/>              
               </div>
             </div>
-            <div style={styles.toPageDiv}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('noticias')}>
               <div style={styles.toPageText}>
                   <p style={styles.pageName}>Notícias</p>
               </div>
@@ -47,7 +65,7 @@ function Inicio() {
             </div>
           </div>
           <div style={styles.row}>
-            <div style={styles.toPageDiv}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('paginasUteis')}>
               <div style={styles.toPageText}>
                   <p style={styles.pageName}>Páginas úteis</p>
               </div>
@@ -55,7 +73,7 @@ function Inicio() {
                   <FontAwesomeIcon icon={faSquareArrowUpRight} size="3x" color="var(--blue-warm-vivid-70)"/>              
               </div>
             </div>
-            <div style={styles.toPageDiv}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('diaEspacial')}>
               <div style={styles.toPageText}>
                   <p style={styles.pageName}>Dia Espacial</p>
                 </div>
@@ -65,9 +83,8 @@ function Inicio() {
             </div>
           </div>
         </div>
-      </div>
       <div style={styles.footerContainer}>
-        <Footer/>
+        <FooterInfo/>
       </div>
 
       </div>
