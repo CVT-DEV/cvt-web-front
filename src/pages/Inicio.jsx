@@ -36,7 +36,7 @@ function Inicio() {
   return (
     <>
     <div style={styles.pageContainer}>
-        <Header/>
+        <Header />
         <div style={styles.content}>
           <div style={styles.row}>
             <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
