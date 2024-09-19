@@ -1,33 +1,90 @@
 import React from "react";
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import FooterInfo from '../components/FooterInfo';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileLines, faImages, faNewspaper, faShuttleSpace, faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons';
 
 
 function Inicio() {
 
   const navigate = useNavigate();
 
-  function navigateGaleria () {
-    navigate("/galeria");
+  function handleClick(page) {
+    switch(page) {
+      case 'galeria':
+        navigate("/galeria");
+        break;
+      case 'materiaisDidaticos':
+        navigate("/materiaisDidaticos");
+        break;
+      case 'noticias':
+        navigate("/noticias");
+        break;
+      case 'paginasUteis':
+        navigate("/paginasUteis");
+        break;
+      case 'diaEspacial':
+        navigate("/diaEspacial");
+        break;
+      default:
+        console.log("Nenhuma página especificada.");
+        break;
+    }
   }
 
   return (
     <>
     <div style={styles.pageContainer}>
-      <div style={styles.footerUp}>
-        <Header/>
+        <Header />
         <div style={styles.content}>
-          <h3 style={styles.subtitle}>Tela inicial</h3>
-          <div style = {styles.buttonContainer}>
-            <button onClick={navigateGaleria} class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">   
-              Galeria
-            </button>
+          <div style={styles.row}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
+              <div style={styles.toPageText}>
+                <p style={styles.pageName}>Galeria</p>
+              </div>
+              <div style={styles.toPageIcon}>
+                <FontAwesomeIcon icon={faImages} size="3x" color="var(--blue-warm-vivid-70)"/>         
+              </div>
+            </div>
+            <div style={styles.toPageDiv} onClick={() => handleClick('materiaisDidaticos')}>
+              <div style={styles.toPageText}>
+                  <p style={styles.pageName}>Materiais Didáticos</p>
+              </div>
+              <div style={styles.toPageIcon}>
+                <FontAwesomeIcon icon={faFileLines} size="3x" color="var(--blue-warm-vivid-70)"/>              
+              </div>
+            </div>
+            <div style={styles.toPageDiv} onClick={() => handleClick('noticias')}>
+              <div style={styles.toPageText}>
+                  <p style={styles.pageName}>Notícias</p>
+              </div>
+              <div style={styles.toPageIcon}>
+                  <FontAwesomeIcon icon={faNewspaper} size="3x" color="var(--blue-warm-vivid-70)"/>              
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div style={styles.toPageDiv} onClick={() => handleClick('paginasUteis')}>
+              <div style={styles.toPageText}>
+                  <p style={styles.pageName}>Páginas úteis</p>
+              </div>
+              <div style={styles.toPageIcon}>
+                  <FontAwesomeIcon icon={faSquareArrowUpRight} size="3x" color="var(--blue-warm-vivid-70)"/>              
+              </div>
+            </div>
+            <div style={styles.toPageDiv} onClick={() => handleClick('diaEspacial')}>
+              <div style={styles.toPageText}>
+                  <p style={styles.pageName}>Dia Espacial</p>
+                </div>
+                <div style={styles.toPageIcon}>
+                  <FontAwesomeIcon icon={faShuttleSpace} size="3x" color="var(--blue-warm-vivid-70)"/>              
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       <div style={styles.footerContainer}>
-        <Footer/>
+        <FooterInfo/>
       </div>
 
       </div>
@@ -40,35 +97,52 @@ const styles = {
       position: "relative", 
       minHeight: "100vh"
   },
-  footerUp: {
-      paddingbottom: "48px"
-  },
   content: {
-    position: "absolute",
-    left: 198,
-    top: 166,
+    margin: "auto",
     width: 884,
     height: 548,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingbottom: "48px"
+  },
+  row: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  toPageDiv: {
+    position: "relative",
+    width: 178.73,
+    height: 75.06,
+    margin: "0 50px 45px 0",
+    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)"
+  },
+  toPageText: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 19.06,
     textAlign: "center"
   },
-  subtitle: {
-    fontSize:	"var(--font-size-scale-up-04)",
-    fontWeight:	"var(--font-weight-medium)",
-    lineHeight:	"var(--font-line-height-low)",
-    color: "var(--blue-warm-vivid-70)",
-    marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
-  },
-  buttonContainer: {
-    display: "flex", 
-    flexDirection: "column",
+  toPageIcon: {
+    position: "absolute",
+    display: "flex",
+    top: 0,
+    width: "100%",
+    height: 45,
+    justifyContent: "center",
     alignItems: "center"
+  },
+  pageName: {
+    fontSize:	"var(--font-size-scale-up-01)",
+    fontWeight:	"var(--font-weight-regular)",
+    lineHeight:	"var(--font-line-height-low)"
   },
   footerContainer: {
     position: "absolute",
     bottom: 0,
-    width: "100%", 
-    height: "48px"
+    width: "100%"
 },
 }
 

@@ -40,7 +40,7 @@ function TelaLogin() {
   return (
     <>
     <div style={styles.pageContainer}>
-        <Header/>
+        <Header notLoggedIn={true} />
         <div style={styles.content}>
           <h2 style={styles.title}>CVT-Espacial</h2>
           <h3 style={styles.subtitle}>Faça seu login</h3>

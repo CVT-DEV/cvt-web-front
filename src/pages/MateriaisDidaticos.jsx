@@ -2,14 +2,14 @@ import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function Galeria() {
+function MateriaisDidaticos() {
 
   return (
     <>
     <div style={styles.pageContainer}>
         <Header/>
         <div style={styles.content}>
-          <h3 style={styles.subtitle}>Galeria</h3>
+          <h3 style={styles.subtitle}>Materiais Didáticos</h3>
         </div>
       <div style={styles.footerContainer}>
         <Footer/>
@@ -49,4 +49,4 @@ const styles = {
 },
 }
 
-export default Galeria;
+export default MateriaisDidaticos;
