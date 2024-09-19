@@ -1,10 +1,16 @@
 import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Inicio() {
+
+  const navigate = useNavigate();
+
+  function navigateGaleria () {
+    navigate("/galeria");
+  }
 
   return (
     <>
@@ -13,9 +19,9 @@ function Inicio() {
         <Header/>
         <div style={styles.content}>
           <h3 style={styles.subtitle}>Tela inicial</h3>
-          <div style = {styles.inputContainer}>
-            <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">
-                <Link to="/dia-espacial">Dia Espacial</Link>
+          <div style = {styles.buttonContainer}>
+            <button onClick={navigateGaleria} class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">   
+              Galeria
             </button>
           </div>
         </div>
@@ -53,7 +59,7 @@ const styles = {
     marginBottom: "var(--spacing-scale-2xh)",
     marginTop: "var(--spacing-scale-3xh)"
   },
-  inputContainer: {
+  buttonContainer: {
     display: "flex", 
     flexDirection: "column",
     alignItems: "center"

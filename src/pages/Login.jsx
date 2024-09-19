@@ -1,37 +1,61 @@
 import React from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from "react-router-dom";
+import Input from "../components/Input";
+import Message from "../components/Message";
+import { useNavigate } from "react-router-dom";
+import { api } from "../services/api";
+import { useState } from "react";
 
-function Login() {
+function TelaLogin() {
+
+  const navigate = useNavigate();
+  const [ error , setError ] = useState("");
+
+  function handleLogin (e) {
+
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+    
+    api.post('/admin/login', formJson)
+    .then(function (response) {
+
+      const token = response.headers['x-access-token'];
+      localStorage.setItem('@cvtespacial-web/token', token);
+
+      console.log(localStorage.getItem('@cvtespacial-web/token'));
+
+      navigate("/inicio");
+    })
+    .catch(function (error) {
+      console.log(error);
+      
+      setError("Usuário e/ou senha inválidos.");    
+    })
+  }
 
   return (
     <>
     <div style={styles.pageContainer}>
-      <div style={styles.footerUp}>
         <Header/>
         <div style={styles.content}>
           <h2 style={styles.title}>CVT-Espacial</h2>
           <h3 style={styles.subtitle}>Faça seu login</h3>
-          <div style = {styles.inputContainer}>
-            <div class="col-sm-10 col-lg-8 mb-3">
-              <div class="br-input input-highlight">
-                <label class="sr-only" for="input-highlight-labeless"></label>
-                <input id="input-highlight-labeless" type="text" placeholder="Insira seu e-mail"/>
-              </div>
+
+          <form method="post" onSubmit={handleLogin}>
+           {error && <Message message={error}/>}
+            <div style = {styles.inputContainer}>
+              <Input nome="email" placeholder="Insira seu e-mail"/>
+              <Input nome="senha" placeholder="Insira sua senha"/>
             </div>
-            <div class="col-sm-10 col-lg-8 mb-3">
-              <div class="br-input input-highlight">
-                <label class="sr-only" for="input-highlight-labeless"></label>
-                <input id="input-highlight-labeless" type="text" placeholder="Insira sua senha"/>
-              </div>
-            </div>
-          </div>
-          <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="button">
-            <Link to="/inicio">Entrar</Link>
-          </button>
+            <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="submit">   
+              Entrar
+            </button>
+          </form>
         </div>
-      </div>
       <div style={styles.footerContainer}>
         <Footer/>
       </div>
@@ -43,19 +67,15 @@ function Login() {
 
 const styles = {
   pageContainer: {
-      position: "relative", 
-      minHeight: "100vh"
-  },
-  footerUp: {
-      paddingbottom: "48px"
+    position: "relative",
+    minHeight: "100vh"
   },
   content: {
-    position: "absolute",
-    left: 198,
-    top: 166,
+    margin: "auto",
     width: 884,
     height: 548,
-    textAlign: "center"
+    textAlign: "center",
+    paddingbottom: "48px"
   },
   title: {
     fontSize: "var(--font-size-scale-up-05)",
@@ -81,9 +101,8 @@ const styles = {
   footerContainer: {
     position: "absolute",
     bottom: 0,
-    width: "100%", 
-    height: "48px"
+    width: "100%"
 },
 }
 
-export default Login;
+export default TelaLogin;
