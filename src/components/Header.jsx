@@ -2,8 +2,20 @@ import "@govbr-ds/core/dist/core.min.css";
 import logoCvt from "../assets/logo-cvt-azul.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
 
 function Header(props) {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <header class="br-header">
       <div class="container-lg">
@@ -21,8 +33,9 @@ function Header(props) {
         <div class="header-actions">
           <div class="header-login">
             <div class="header-sign-in">
-              <button class="br-sign-in primary small" type="button" data-trigger="login"><FontAwesomeIcon icon={faRightFromBracket}/>         
-              <span class="d-sm-inline">Sair</span>
+              <button class="br-sign-in primary small" type="button" data-trigger="login" onClick={openModal}>
+                <FontAwesomeIcon icon={faRightFromBracket}/>         
+                <span class="d-sm-inline">Sair</span>
               </button>
             </div>
             <div class="header-avatar"></div>
