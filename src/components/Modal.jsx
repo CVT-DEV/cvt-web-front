@@ -1,6 +1,13 @@
 import "@govbr-ds/core/dist/core.min.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal ({ isOpen, onClose, children }) {
+    const navigate = useNavigate();
+
+    function logOut() {
+        navigate("/login");
+    }
+
     if (!isOpen) return null;
 
     return (
@@ -15,9 +22,9 @@ export default function Modal ({ isOpen, onClose, children }) {
                 <p>Você tem certeza que deseja encerrar sua sessão neste navegador?</p>
             </div>
             <div class="br-modal-footer justify-content-end">
-                <button class="br-button secondary" type="button">Cancelar
+                <button class="br-button secondary" type="button" onClick={onClose}>Cancelar
                 </button>
-                <button class="br-button primary ml-2" type="button">Confirmar
+                <button class="br-button primary ml-2" type="button" onClick={logOut}>Confirmar
                 </button>
             </div>
             </div>

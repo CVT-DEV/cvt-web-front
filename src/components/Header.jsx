@@ -3,6 +3,7 @@ import logoCvt from "../assets/logo-cvt-azul.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
+import Modal from './Modal'
 
 function Header(props) {
 
@@ -42,6 +43,7 @@ function Header(props) {
           </div>
         </div>
       ) }
+        <Modal isOpen={isModalOpen} onClose={closeModal}/>
         <div class="header-bottom">
           <div class="header-menu">
             <div class="header-menu-trigger">
