@@ -82,7 +82,7 @@ const styles = {
     fontWeight:	"var(--font-weight-regular)",
     lineHeight:	"var(--font-line-height-low)",
     color:	"var(--gray-80)",
-    marginBottom:	"var(--spacing-scale-2xh)",
+    marginBottom:	0,
     marginTop: "var(--spacing-scale-3xh)"
   },
   subtitle: {
@@ -91,7 +91,7 @@ const styles = {
     lineHeight:	"var(--font-line-height-low)",
     color: "var(--blue-warm-vivid-70)",
     marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
+    marginTop: 0
   },
   inputContainer: {
     display: "flex", 
