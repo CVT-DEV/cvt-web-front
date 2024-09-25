@@ -6,6 +6,7 @@ export default function Modal ({ isOpen, onClose, children }) {
 
     function logOut() {
         navigate("/");
+        onClose();
     }
 
     if (!isOpen) return null;

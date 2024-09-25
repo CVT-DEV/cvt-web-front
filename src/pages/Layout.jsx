@@ -2,16 +2,16 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-export default function Layout () {
+export default function Layout (props) {
     return(
         <>
         <div style={styles.pageContainer}>
-            <Header/>
+            <Header notLoggedIn={props.notLoggedIn} />
             <div style={styles.content}>
                 <Outlet/>
             </div>
             <div style={styles.footerContainer}>
-                <Footer/>
+                <Footer notLoggedIn={props.notLoggedIn} />
             </div>
         </div>
         </>

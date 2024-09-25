@@ -16,8 +16,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout notLoggedIn={true} />}>
           <Route index element={<Login />}/>
+        </Route>
+        <Route path="/" element={<Layout />}>
           <Route path="inicio" element={<Inicio />}/>
           <Route path="galeria" element={<Galeria />}/>
           <Route path="materiaisDidaticos" element={(<MateriaisDidaticos/>)}/>
