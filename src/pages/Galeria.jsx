@@ -46,7 +46,7 @@ const styles = {
     bottom: 0,
     width: "100%", 
     height: "48px"
-},
+}
 }
 
 export default Galeria;

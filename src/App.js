@@ -3,6 +3,7 @@ import "@govbr-ds/core/dist/core.min.css";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Galeria from "./pages/Galeria";
@@ -15,13 +16,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Login />}/>
-        <Route path="inicio" element={<Inicio />}/>
-        <Route path="galeria" element={<Galeria />}/>
-        <Route path="materiaisDidaticos" element={(<MateriaisDidaticos/>)}/>
-        <Route path="noticias" element={(<Noticias/>)}/>
-        <Route path="paginasUteis" element={(<PaginasUteis/>)}/>
-        <Route path="diaEspacial" element={(<DiaEspacial/>)}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Login />}/>
+          <Route path="inicio" element={<Inicio />}/>
+          <Route path="galeria" element={<Galeria />}/>
+          <Route path="materiaisDidaticos" element={(<MateriaisDidaticos/>)}/>
+          <Route path="noticias" element={(<Noticias/>)}/>
+          <Route path="paginasUteis" element={(<PaginasUteis/>)}/>
+          <Route path="diaEspacial" element={(<DiaEspacial/>)}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

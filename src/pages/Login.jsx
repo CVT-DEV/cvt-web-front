@@ -1,6 +1,4 @@
 import React from "react";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Input from "../components/Input";
 import Message from "../components/Message";
 import { useNavigate } from "react-router-dom";
@@ -39,8 +37,6 @@ function TelaLogin() {
 
   return (
     <>
-    <div style={styles.pageContainer}>
-        <Header notLoggedIn={true} />
         <div style={styles.content}>
           <h2 style={styles.title}>CVT-Espacial</h2>
           <h3 style={styles.subtitle}>Faça seu login</h3>
@@ -56,24 +52,13 @@ function TelaLogin() {
             </button>
           </form>
         </div>
-      <div style={styles.footerContainer}>
-        <Footer/>
-      </div>
-
-      </div>
     </>
   );
 }
 
 const styles = {
-  pageContainer: {
-    position: "relative",
-    minHeight: "100vh"
-  },
   content: {
-    margin: "auto",
     width: 884,
-    height: 548,
     textAlign: "center",
     paddingbottom: "48px"
   },
@@ -97,12 +82,7 @@ const styles = {
     display: "flex", 
     flexDirection: "column",
     alignItems: "center"
-  },
-  footerContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%"
-},
+  }
 }
 
 export default TelaLogin;
