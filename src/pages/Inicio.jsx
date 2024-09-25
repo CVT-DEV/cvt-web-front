@@ -11,6 +11,10 @@ function Inicio() {
   const navigate = useNavigate();
 
   function handleClick(page) {
+    page = '/' + page;
+
+    navigate(page);
+    /*
     switch(page) {
       case 'galeria':
         navigate("/galeria");
@@ -30,7 +34,7 @@ function Inicio() {
       default:
         console.log("Nenhuma página especificada.");
         break;
-    }
+    }*/
   }
 
   return (

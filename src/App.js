@@ -15,7 +15,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index path="login" element={<Login />}/>
+        <Route index element={<Login />}/>
         <Route path="inicio" element={<Inicio />}/>
         <Route path="galeria" element={<Galeria />}/>
         <Route path="materiaisDidaticos" element={(<MateriaisDidaticos/>)}/>

@@ -5,7 +5,7 @@ export default function Modal ({ isOpen, onClose, children }) {
     const navigate = useNavigate();
 
     function logOut() {
-        navigate("/login");
+        navigate("/");
     }
 
     if (!isOpen) return null;
