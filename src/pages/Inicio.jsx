@@ -105,7 +105,8 @@ const styles = {
     width: 178.73,
     height: 75.06,
     margin: "22.5px 25px",
-    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)"
+    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+    cursor: "pointer"
   },
   toPageText: {
     position: "absolute",
