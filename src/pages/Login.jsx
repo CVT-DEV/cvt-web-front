@@ -37,7 +37,7 @@ function TelaLogin() {
 
   return (
     <>
-        <div style={styles.content}>
+        <div style={styles.container}>
           <h2 style={styles.title}>CVT-Espacial</h2>
           <h3 style={styles.subtitle}>Faça seu login</h3>
 
@@ -57,10 +57,9 @@ function TelaLogin() {
 }
 
 const styles = {
-  content: {
+  container: {
     width: 884,
-    textAlign: "center",
-    paddingbottom: "48px"
+    textAlign: "center"
   },
   title: {
     fontSize: "var(--font-size-scale-up-05)",
