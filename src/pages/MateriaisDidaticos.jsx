@@ -5,7 +5,7 @@ function MateriaisDidaticos() {
   return (
     <>
         <div style={styles.container}>
-          <h3 style={styles.subtitle}>Materiais Didáticos</h3>
+          <h3 class="font-type">Materiais Didáticos</h3>
         </div>
     </>
   );

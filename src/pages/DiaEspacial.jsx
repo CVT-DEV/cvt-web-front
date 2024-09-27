@@ -5,7 +5,7 @@ function DiaEspacial() {
   return (
     <>
         <div style={styles.container}>
-          <h3 style={styles.subtitle}>Dia Espacial</h3>
+          <h3 class="font-type" >Dia Espacial</h3>
         </div>
     </>
   );

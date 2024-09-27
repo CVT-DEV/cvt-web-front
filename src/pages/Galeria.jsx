@@ -1,30 +1,16 @@
 import React from "react";
+import Breadcrumb from "../components/Breadcrumb";
 
 function Galeria() {
 
   return (
     <>
-        <div style={styles.container}>
-          <h3 style={styles.subtitle}>Galeria</h3>
-        </div>
+    <div class="container-lg" style={{display: "flex"}}>
+      <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}} >Galeria</h1>
+      <Breadcrumb screenName="Galeria" />
+    </div>
     </>
   );
-}
-
-const styles = {
-  container: {
-    width: 884,
-    height: 469,
-    textAlign: "center"
-  },
-  subtitle: {
-    fontSize:	"var(--font-size-scale-up-04)",
-    fontWeight:	"var(--font-weight-medium)",
-    lineHeight:	"var(--font-line-height-low)",
-    color: "var(--blue-warm-vivid-70)",
-    marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
-  }
 }
 
 export default Galeria;

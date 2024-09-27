@@ -5,7 +5,7 @@ function PaginasUteis() {
   return (
     <>
         <div style={styles.container}>
-          <h3 style={styles.subtitle}>Págins Úteis</h3>
+          <h3 class="font-type">Páginas Úteis</h3>
         </div>
     </>
   );

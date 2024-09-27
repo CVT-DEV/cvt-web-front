@@ -5,7 +5,7 @@ function Noticias() {
   return (
     <>
         <div style={styles.container}>
-          <h3 style={styles.subtitle}>Notícias</h3>
+          <h3 class="font-type">Notícias</h3>
         </div>
     </>
   );

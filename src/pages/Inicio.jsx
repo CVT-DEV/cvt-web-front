@@ -12,27 +12,6 @@ function Inicio() {
     page = '/' + page;
 
     navigate(page);
-    /*
-    switch(page) {
-      case 'galeria':
-        navigate("/galeria");
-        break;
-      case 'materiaisDidaticos':
-        navigate("/materiaisDidaticos");
-        break;
-      case 'noticias':
-        navigate("/noticias");
-        break;
-      case 'paginasUteis':
-        navigate("/paginasUteis");
-        break;
-      case 'diaEspacial':
-        navigate("/diaEspacial");
-        break;
-      default:
-        console.log("Nenhuma página especificada.");
-        break;
-    }*/
   }
 
   return (
