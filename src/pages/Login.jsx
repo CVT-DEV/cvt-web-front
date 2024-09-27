@@ -44,8 +44,8 @@ function TelaLogin() {
           <form method="post" onSubmit={handleLogin}>
            {error && <Message message={error}/>}
             <div style = {styles.inputContainer}>
-              <Input nome="email" placeholder="Insira seu e-mail"/>
-              <Input nome="senha" placeholder="Insira sua senha"/>
+              <Input name="email" placeholder="Insira seu e-mail"/>
+              <Input name="senha" placeholder="Insira sua senha"/>
             </div>
             <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="submit">   
               Entrar
