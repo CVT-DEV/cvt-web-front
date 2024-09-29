@@ -10,7 +10,7 @@ function TelaLogin() {
   const navigate = useNavigate();
   const [ error , setError ] = useState("");
 
-  function handleLogin (e) {
+  async function handleLogin (e) {
 
     e.preventDefault();
 
@@ -18,7 +18,7 @@ function TelaLogin() {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     
-    api.post('/admin/login', formJson)
+    await api.post('/admin/login', formJson)
     .then(function (response) {
 
       const token = response.headers['x-access-token'];
@@ -64,7 +64,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    padding: "24px 0 48px"
+    paddingBottom: "48px"
 },
   container: {
     width: 884
