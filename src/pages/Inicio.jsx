@@ -16,6 +16,7 @@ function Inicio() {
 
   return (
     <>
+      <div style={styles.content}>
         <div style={styles.container}>
           <div style={styles.row}>
             <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
@@ -62,11 +63,17 @@ function Inicio() {
             </div>
           </div>
         </div>
+        </div>
     </>
   );
 }
 
 const styles = {
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+},
   container: {
     width: 884,
     height: 469,

@@ -19,10 +19,8 @@ export default function Layout (props) {
         <>
         <div style={styles.pageContainer}>
             <Header notLoggedIn={props.notLoggedIn} openModal={openModal} closeModal={closeModal} />
-            <div style={styles.content}>
                 <Outlet/>
                 <Modal isOpen={isModalOpen} onClose={closeModal}/>
-            </div>
             <div style={styles.footerContainer}>
                 <Footer notLoggedIn={props.notLoggedIn} />
             </div>
