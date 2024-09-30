@@ -1,6 +1,4 @@
 import React from "react";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Input from "../components/Input";
 import Message from "../components/Message";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +10,7 @@ function TelaLogin() {
   const navigate = useNavigate();
   const [ error , setError ] = useState("");
 
-  function handleLogin (e) {
+  async function handleLogin (e) {
 
     e.preventDefault();
 
@@ -20,7 +18,7 @@ function TelaLogin() {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     
-    api.post('/admin/login', formJson)
+    await api.post('/admin/login', formJson)
     .then(function (response) {
 
       const token = response.headers['x-access-token'];
@@ -39,50 +37,44 @@ function TelaLogin() {
 
   return (
     <>
-    <div style={styles.pageContainer}>
-        <Header notLoggedIn={true} />
-        <div style={styles.content}>
+    <div style={styles.content}>
+        <div style={styles.container}>
           <h2 style={styles.title}>CVT-Espacial</h2>
           <h3 style={styles.subtitle}>Faça seu login</h3>
 
           <form method="post" onSubmit={handleLogin}>
            {error && <Message message={error}/>}
             <div style = {styles.inputContainer}>
-              <Input nome="email" placeholder="Insira seu e-mail"/>
-              <Input nome="senha" placeholder="Insira sua senha"/>
+              <Input name="email" placeholder="Insira seu e-mail"/>
+              <Input name="senha" placeholder="Insira sua senha"/>
             </div>
             <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="submit">   
               Entrar
             </button>
           </form>
         </div>
-      <div style={styles.footerContainer}>
-        <Footer/>
-      </div>
-
-      </div>
+        </div>
     </>
   );
 }
 
 const styles = {
-  pageContainer: {
-    position: "relative",
-    minHeight: "100vh"
-  },
   content: {
-    margin: "auto",
-    width: 884,
-    height: 548,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     textAlign: "center",
-    paddingbottom: "48px"
+    paddingBottom: "48px"
+},
+  container: {
+    width: 884
   },
   title: {
     fontSize: "var(--font-size-scale-up-05)",
     fontWeight:	"var(--font-weight-regular)",
     lineHeight:	"var(--font-line-height-low)",
     color:	"var(--gray-80)",
-    marginBottom:	"var(--spacing-scale-2xh)",
+    marginBottom:	0,
     marginTop: "var(--spacing-scale-3xh)"
   },
   subtitle: {
@@ -91,18 +83,13 @@ const styles = {
     lineHeight:	"var(--font-line-height-low)",
     color: "var(--blue-warm-vivid-70)",
     marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
+    marginTop: 0
   },
   inputContainer: {
     display: "flex", 
     flexDirection: "column",
     alignItems: "center"
-  },
-  footerContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%"
-},
+  }
 }
 
 export default TelaLogin;

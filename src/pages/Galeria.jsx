@@ -1,52 +1,29 @@
 import React from "react";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Breadcrumb from "../components/Breadcrumb";
+import Card from "../components/Card";
 
 function Galeria() {
 
   return (
     <>
-    <div style={styles.pageContainer}>
-        <Header/>
-        <div style={styles.content}>
-          <h3 style={styles.subtitle}>Galeria</h3>
-        </div>
-      <div style={styles.footerContainer}>
-        <Footer/>
+    <div class="column">
+      <div class="container-lg" style={styles.containerLg}>
+        <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}} >Galeria</h1>
+        <Breadcrumb screenName="Galeria" />
       </div>
-
+      <div class="d-flex" style={{justifyContent: "center", paddingBottom: "48px"}}>
+          <Card toPage="true" name="Fotos"/>
+          <Card toPage="true" name="Vídeos" />
+      </div>
       </div>
     </>
   );
 }
 
 const styles = {
-  pageContainer: {
-      position: "relative", 
-      minHeight: "100vh"
-  },
-  content: {
-    position: "absolute",
-    left: 198,
-    top: 166,
-    width: 884,
-    height: 548,
-    textAlign: "center"
-  },
-  subtitle: {
-    fontSize:	"var(--font-size-scale-up-04)",
-    fontWeight:	"var(--font-weight-medium)",
-    lineHeight:	"var(--font-line-height-low)",
-    color: "var(--blue-warm-vivid-70)",
-    marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
-  },
-  footerContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%", 
-    height: "48px"
-},
+  containerLg: {
+    display: "flex"
+  }
 }
 
 export default Galeria;

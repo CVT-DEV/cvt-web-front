@@ -1,6 +1,4 @@
 import React from "react";
-import Header from '../components/Header';
-import FooterInfo from '../components/FooterInfo';
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileLines, faImages, faNewspaper, faShuttleSpace, faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons';
@@ -11,33 +9,15 @@ function Inicio() {
   const navigate = useNavigate();
 
   function handleClick(page) {
-    switch(page) {
-      case 'galeria':
-        navigate("/galeria");
-        break;
-      case 'materiaisDidaticos':
-        navigate("/materiaisDidaticos");
-        break;
-      case 'noticias':
-        navigate("/noticias");
-        break;
-      case 'paginasUteis':
-        navigate("/paginasUteis");
-        break;
-      case 'diaEspacial':
-        navigate("/diaEspacial");
-        break;
-      default:
-        console.log("Nenhuma página especificada.");
-        break;
-    }
+    page = '/' + page;
+
+    navigate(page);
   }
 
   return (
     <>
-    <div style={styles.pageContainer}>
-        <Header />
-        <div style={styles.content}>
+      <div style={styles.content}>
+        <div style={styles.container}>
           <div style={styles.row}>
             <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
               <div style={styles.toPageText}>
@@ -83,28 +63,23 @@ function Inicio() {
             </div>
           </div>
         </div>
-      <div style={styles.footerContainer}>
-        <FooterInfo/>
-      </div>
-
-      </div>
+        </div>
     </>
   );
 }
 
 const styles = {
-  pageContainer: {
-      position: "relative", 
-      minHeight: "100vh"
-  },
   content: {
-    margin: "auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+},
+  container: {
     width: 884,
-    height: 548,
+    height: 469,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    paddingbottom: "48px"
+    justifyContent: "center"
   },
   row: {
     display: "flex",
@@ -115,8 +90,9 @@ const styles = {
     position: "relative",
     width: 178.73,
     height: 75.06,
-    margin: "0 50px 45px 0",
-    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)"
+    margin: "22.5px 25px",
+    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+    cursor: "pointer"
   },
   toPageText: {
     position: "absolute",
@@ -138,12 +114,7 @@ const styles = {
     fontSize:	"var(--font-size-scale-up-01)",
     fontWeight:	"var(--font-weight-regular)",
     lineHeight:	"var(--font-line-height-low)"
-  },
-  footerContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%"
-},
+  }
 }
 
 export default Inicio;
