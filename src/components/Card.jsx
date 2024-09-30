@@ -36,7 +36,7 @@ export default function Card (props) {
                     <div class="card-header">
                         <div class="d-flex" style={styles.dFlex}>
                             <div class="ml-3">
-                                <div class="text-weight-semi-bold text-up-02">Título</div>
+                                <div class="text-weight-semi-bold text-up-02">{props.foto.titulo}</div>
                             </div>
                             <div class="ml-auto">
                                 <button class="br-button circle" type="button" aria-label="Ícone ilustrativo">
@@ -50,7 +50,7 @@ export default function Card (props) {
                     </div>
                     <div class="card-content">
                         <div class="card-area">
-                            <img alt="alunos no CVT-E." src={alunosCvte}/>
+                            <img alt="alunos no CVT-E." src={props.foto.urlImagem}/>
                         </div>
                     </div>
                 </div>

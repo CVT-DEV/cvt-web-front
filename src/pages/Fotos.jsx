@@ -41,12 +41,10 @@ export default function Fotos () {
               </button>
         </div>
         
-        <div class="d-flex" style={styles.dFlex}>
-            { fotos.forEach(
-                (foto) => {
-                    <Card key={foto.id} foto={foto} />
-                }
-            )}
+        <div class="d-grid">
+        {fotos.map((item) => (
+          <Card foto={item}/>
+        ))}
         </div>
 
         <Pagination/>
@@ -63,9 +61,8 @@ const styles = {
       display: "flex",
       alignItems: "center"
     },
-    dFlex: {
-        display: "flex",
-        justifyContent: "space-around"
+    dGrid: {
+        display: "grid"
     },
     buttonNovo: {
         marginLeft: "auto"
