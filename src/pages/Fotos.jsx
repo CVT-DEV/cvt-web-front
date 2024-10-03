@@ -8,7 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Fotos () {
-    const [ fotos, setFotos ] = useState([]);
+    const [ fotos1, setFotos1 ] = useState([]);
+    const [ fotos2, setFotos2 ] = useState([]);
+
 
     async function getFotos () {
         await api.get('/fotos', {
@@ -17,8 +19,10 @@ export default function Fotos () {
             },
           })
         .then((response) => {
-            console.log(response.data);
-            setFotos(response.data);
+            const fotos = response.data;
+            setFotos1(fotos.slice(0, 4));
+            setFotos2(fotos.slice(4));
+            console.log(fotos);
         })
         .catch((error) => {
             console.log(error);   
@@ -41,10 +45,15 @@ export default function Fotos () {
               </button>
         </div>
         
-        <div class="d-grid">
-        {fotos.map((item) => (
-          <Card foto={item}/>
-        ))}
+        <div class="d-flex">
+          { fotos1.map((item) => (
+            <Card foto={item}/>
+          ))}
+        </div>
+        <div class="d-flex">
+          { fotos2.map((item) => (
+            <Card foto={item}/>
+          ))}
         </div>
 
         <Pagination/>
@@ -60,9 +69,6 @@ const styles = {
     containerLg: {
       display: "flex",
       alignItems: "center"
-    },
-    dGrid: {
-        display: "grid"
     },
     buttonNovo: {
         marginLeft: "auto"

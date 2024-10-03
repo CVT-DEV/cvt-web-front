@@ -2,7 +2,6 @@ import "@govbr-ds/core/dist/core.min.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faPenToSquare, faTrash, faVideo } from "@fortawesome/free-solid-svg-icons";
-import alunosCvte from "../assets/alunos-cvt.png"
 
 export default function Card (props) {
     const navigate = useNavigate();
@@ -49,8 +48,8 @@ export default function Card (props) {
                         </div>
                     </div>
                     <div class="card-content">
-                        <div class="card-area">
-                            <img alt="alunos no CVT-E." src={props.foto.urlImagem}/>
+                        <div class="card-area" style={styles.cardArea}>
+                            <img alt={props.foto.titulo} src={props.foto.urlImagem}/>
                         </div>
                     </div>
                 </div>
@@ -69,7 +68,7 @@ const styles = {
     cardContent: {
         display: "flex", 
         justifyContent: "center", 
-        padding: "24px"
+        padding: "24px",
     },
     cardHeader: {
         padding: "16px", 
