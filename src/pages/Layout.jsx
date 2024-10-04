@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Modal from "../components/Modal";
+import Overlay from "../components/Overlay";
 
 export default function Layout (props) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalSairOpen, setisModalSairOpen] = useState(false);
 
     const openModal = () => {
-      setIsModalOpen(true);
+      setisModalSairOpen(true);
     };
   
     const closeModal = () => {
-      setIsModalOpen(false);
+      setisModalSairOpen(false);
     };
 
     return(
@@ -20,7 +20,7 @@ export default function Layout (props) {
         <div style={styles.pageContainer}>
             <Header notLoggedIn={props.notLoggedIn} openModal={openModal} closeModal={closeModal} />
                 <Outlet/>
-                <Modal isOpen={isModalOpen} onClose={closeModal}/>
+                <Overlay isOpen={isModalSairOpen} onClose={closeModal} type="sair" />
             <div style={styles.footerContainer}>
                 <Footer notLoggedIn={props.notLoggedIn} />
             </div>

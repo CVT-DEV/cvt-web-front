@@ -1,15 +1,9 @@
 import "@govbr-ds/core/dist/core.min.css";
 import { faChevronRight, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Breadcrumb (props) {
-    const navigate = useNavigate();
-
-    function handleHome() {
-        navigate('/inicio')
-    }
 
     return (
         <nav class="br-breadcrumb" aria-label="Breadcrumbs">
