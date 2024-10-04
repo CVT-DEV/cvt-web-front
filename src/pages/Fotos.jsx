@@ -6,10 +6,12 @@ import Card from "../components/Card";
 import Pagination from "../components/Pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Overlay from "../components/Overlay";
 
 export default function Fotos () {
     const [ fotos1, setFotos1 ] = useState([]);
     const [ fotos2, setFotos2 ] = useState([]);
+    const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
 
 
     async function getFotos () {
@@ -33,13 +35,21 @@ export default function Fotos () {
         getFotos();
     }, [])
 
+    function openModalAdicionar () {
+      setIsModalAdicionarOpen(true);
+    }
+
+    function closeModalAdicionar() {
+      setIsModalAdicionarOpen(false);
+    }
+
     return(
         <>
         <div class="column" style={styles.content}>
         <div class="container-lg" style={styles.containerLg}>
             <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Fotos</h1>
             <Breadcrumb screenName="Galeria" />
-            <button class="br-sign-in primary small" type="button" style={styles.buttonNovo}>
+            <button class="br-sign-in primary small" type="button" style={styles.buttonNovo} onClick={openModalAdicionar}>
                 <FontAwesomeIcon icon={faPlus}/>         
                 <span class="d-sm-inline">Novo</span>
               </button>
@@ -58,6 +68,8 @@ export default function Fotos () {
 
         <Pagination/>
         </div>
+
+        <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-foto"/>
         </>
     )
 }

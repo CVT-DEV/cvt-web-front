@@ -1,7 +1,8 @@
 import "@govbr-ds/core/dist/core.min.css";
 import ModalSair from "./Modais/ModalSair";
 import ModalFoto from "./Modais/ModalFoto";
-import ModalDeletar from "./Modais/ModalDeletar";
+import ModalDeletarFoto from "./Modais/ModalDeletarFoto";
+import ModalAdicionarFoto from "./Modais/ModalAdicionarFoto";
 
 export default function Overlay ({ isOpen, onClose, type, foto }) {
 
@@ -14,7 +15,8 @@ export default function Overlay ({ isOpen, onClose, type, foto }) {
                         {
                             type==="sair" ? <ModalSair onClose={onClose} />
                             : type==="foto" ? <ModalFoto onClose={onClose} foto={foto} />
-                            : type==="deletar" && <ModalDeletar onClose={onClose} idFoto={foto.id} />
+                            : type==="deletar-foto" ? <ModalDeletarFoto onClose={onClose} idFoto={foto.id} />
+                            : type==="adicionar-foto" && <ModalAdicionarFoto onClose={onClose} />
                          }
                     </div>
                 </div>

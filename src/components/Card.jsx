@@ -75,7 +75,7 @@ export default function Card (props) {
                 </div>
 
                 <Overlay isOpen={isModalFotoOpen} onClose={closeModalFoto} type="foto" foto={props.foto} />
-                <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar" foto={props.foto} />
+                <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-foto" foto={props.foto} />
 
                 </div>
                 )
