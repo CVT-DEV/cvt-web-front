@@ -9,6 +9,7 @@ export default function Card (props) {
     const navigate = useNavigate();
     const [ isModalFotoOpen, setIsModalFotoOpen ] = useState(false)
     const [ isModalDeletarOpen, setIsModalDeletarOpen ] = useState(false);
+    const [ isModalEditarOpen, setIsModalEditarOpen ] = useState(false);
 
     function handleClick(name) {
         if (name==="Fotos") navigate('/fotos');
@@ -29,6 +30,14 @@ export default function Card (props) {
 
       function closeModalDeletar () {
         setIsModalDeletarOpen(false);
+      }
+
+      function openModalEditar() {
+        setIsModalEditarOpen(true);
+      }
+
+      function closeModalEditar() {
+        setIsModalEditarOpen(false);
       }
 
     return(
@@ -61,7 +70,7 @@ export default function Card (props) {
                                 <button class="br-button circle" type="button" aria-label="Ícone ilustrativo" onClick={openModalDeletar}>
                                     <FontAwesomeIcon icon={faTrash} color="var(--blue-warm-vivid-70)"/>
                                 </button>
-                                <button class="br-button circle" type="button" aria-label="Ícone ilustrativo">
+                                <button class="br-button circle" type="button" aria-label="Ícone ilustrativo" onClick={openModalEditar}>
                                     <FontAwesomeIcon icon={faPenToSquare} color="var(--blue-warm-vivid-70)"/>
                                 </button>
                             </div>
@@ -76,6 +85,7 @@ export default function Card (props) {
 
                 <Overlay isOpen={isModalFotoOpen} onClose={closeModalFoto} type="foto" foto={props.foto} />
                 <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-foto" foto={props.foto} />
+                <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-foto" foto={props.foto} />
 
                 </div>
                 )

@@ -3,6 +3,7 @@ import ModalSair from "./Modais/ModalSair";
 import ModalFoto from "./Modais/ModalFoto";
 import ModalDeletarFoto from "./Modais/ModalDeletarFoto";
 import ModalAdicionarFoto from "./Modais/ModalAdicionarFoto";
+import ModalEditarFoto from "./Modais/ModalEditarFoto";
 
 export default function Overlay ({ isOpen, onClose, type, foto }) {
 
@@ -16,7 +17,8 @@ export default function Overlay ({ isOpen, onClose, type, foto }) {
                             type==="sair" ? <ModalSair onClose={onClose} />
                             : type==="foto" ? <ModalFoto onClose={onClose} foto={foto} />
                             : type==="deletar-foto" ? <ModalDeletarFoto onClose={onClose} idFoto={foto.id} />
-                            : type==="adicionar-foto" && <ModalAdicionarFoto onClose={onClose} />
+                            : type==="adicionar-foto" ? <ModalAdicionarFoto onClose={onClose} />
+                            : type==="editar-foto" && <ModalEditarFoto onClose={onClose} idFoto={foto.id} />
                          }
                     </div>
                 </div>
