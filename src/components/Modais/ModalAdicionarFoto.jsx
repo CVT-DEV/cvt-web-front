@@ -1,31 +1,28 @@
 import "@govbr-ds/core/dist/core.min.css";
-import { useState } from "react";
 import Input from "../../components/Input"
-import Message from "../Message";
 import { api } from "../../services/api";
 
 export default function ModalAdicionarFoto({ onClose }) {
-    const [ error , setError ] = useState("");
 
     async function adicionarFoto(e) {
+        e.preventDefault();
+
         const form = e.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
 
-        await api.post('/fotos', {
-            formJson
-        }, {
+        await api.post('/fotos', formJson, {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
             },
-          },)
-        .then((response => {
+          })
+        .then((response) => {
             console.log(response);
-        }))
+            onClose();
+            window.location.reload();
+        })
         .catch(function (error) {
-            console.log(error);
-            
-            setError("Usuário e/ou senha inválidos.");    
+            console.log(error);   
           })
 
     }
@@ -39,9 +36,9 @@ export default function ModalAdicionarFoto({ onClose }) {
             </div>
             <form method="post" onSubmit={adicionarFoto}>
                 <div class="br-modal-body" style={styles.modalBody}>
-                    <Input name="Título" placeholder="Título" />
-                    <Input name="URL Imagem" placeholder="Ex.: https://www.xxxxxxx.xxx" />
-                    <Input name="Fonte" placeholder="Fonte" />
+                    <Input name="titulo" titulo="Título" placeholder="Título" />
+                    <Input name="urlImagem" titulo="URL da imagem" placeholder="Ex.: https://www.xxxxxxx.xxx" />
+                    <Input name="fonte" titulo="Fonte" placeholder="Fonte" />
                 </div>
                 <div class="br-modal-footer justify-content-end">
                     <button class="br-button secondary" type="button" onClick={onClose}>Cancelar

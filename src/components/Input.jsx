@@ -35,8 +35,8 @@ export default function Input (props) {
             ) : (
                 <div class="col-sm-8 col-lg-5">
                 <div class="br-input">
-                    <label for="input-default">{props.name}</label>
-                    <input id="input-default" type="text" placeholder={props.placeholder}/>
+                    <label for="input-default">{props.titulo}</label>
+                    <input name={props.name} type="text" id="input-default" placeholder={props.placeholder}/>
                 </div>
                 </div>
             )
