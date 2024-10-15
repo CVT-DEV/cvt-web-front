@@ -13,11 +13,20 @@ export default function Fotos () {
     const [ fotos2, setFotos2 ] = useState([]);
     const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
 
+    const DEFAULT_PAGE = 1;
 
-    async function getFotos () {
+    const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
+
+    const handlePageChange = (value) => {  
+      setCurrentPage(value);  
+    };
+  
+
+    async function getFotos (page) {
         await api.get('/fotos', {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
+              'page': DEFAULT_PAGE * (currentPage - 1)
             },
           })
         .then((response) => {
@@ -32,8 +41,10 @@ export default function Fotos () {
     }
 
     useEffect(() => {
-        getFotos();
-    }, [])
+        getFotos(currentPage);
+    }, [currentPage])
+
+    const totalPages = 4;
 
     function openModalAdicionar () {
       setIsModalAdicionarOpen(true);
@@ -66,7 +77,7 @@ export default function Fotos () {
           ))}
         </div>
 
-        <Pagination/>
+        <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange}/>
         </div>
 
         <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-foto"/>
