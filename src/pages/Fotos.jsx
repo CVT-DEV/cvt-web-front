@@ -11,28 +11,34 @@ import Overlay from "../components/Overlay";
 export default function Fotos () {
     const [ fotos1, setFotos1 ] = useState([]);
     const [ fotos2, setFotos2 ] = useState([]);
+    const [ totalPages, setTotalPages ] = useState(1);
     const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
 
     const DEFAULT_PAGE = 1;
+    const DEFAULT_PAGE_SIZE = 8;
 
     const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
 
     const handlePageChange = (value) => {  
       setCurrentPage(value);  
     };
-  
 
     async function getFotos (page) {
         await api.get('/fotos', {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
-              'page': DEFAULT_PAGE * (currentPage - 1)
+              'page': DEFAULT_PAGE * (currentPage - 1),
+              'limit': DEFAULT_PAGE_SIZE
             },
           })
         .then((response) => {
-            const fotos = response.data;
+            const totalPages = Math.ceil( response.data.totalFotos / DEFAULT_PAGE_SIZE);
+            setTotalPages(totalPages);
+
+            const fotos = response.data.fotos;
             setFotos1(fotos.slice(0, 4));
             setFotos2(fotos.slice(4));
+
             console.log(fotos);
         })
         .catch((error) => {
@@ -43,8 +49,6 @@ export default function Fotos () {
     useEffect(() => {
         getFotos(currentPage);
     }, [currentPage])
-
-    const totalPages = 4;
 
     function openModalAdicionar () {
       setIsModalAdicionarOpen(true);
