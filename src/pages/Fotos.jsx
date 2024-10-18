@@ -23,6 +23,14 @@ export default function Fotos () {
       setCurrentPage(value);  
     };
 
+    const handleNextPage = (value, totalPages) => {
+      value < totalPages && setCurrentPage( value + 1 );
+    }
+
+    const handlePreviousPage = (value) => {
+      value > 1 && setCurrentPage( value - 1 );
+    }
+
     async function getFotos (page) {
         await api.get('/fotos', {
             headers: {
@@ -81,7 +89,7 @@ export default function Fotos () {
           ))}
         </div>
 
-        <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange}/>
+        <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
         </div>
 
         <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-foto"/>
