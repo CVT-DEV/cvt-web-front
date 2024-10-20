@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { api } from "../services/api";
 import Breadcrumb from "../components/Breadcrumb";
-import Card from "../components/Card";
+import CardFoto from "../components/Cards/CardFoto";
 import Pagination from "../components/Pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -71,7 +71,7 @@ export default function Fotos () {
         <div class="column" style={styles.content}>
         <div class="container-lg" style={styles.containerLg}>
             <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Fotos</h1>
-            <Breadcrumb screenName="Galeria" />
+            <Breadcrumb links={[ { nome:"Galeria", link:"/galeria" }, { nome: "Fotos"} ]} />
             <button class="br-sign-in primary small" type="button" style={styles.buttonNovo} onClick={openModalAdicionar}>
                 <FontAwesomeIcon icon={faPlus}/>         
                 <span class="d-sm-inline">Novo</span>
@@ -80,12 +80,12 @@ export default function Fotos () {
         
         <div class="d-flex">
           { fotos1.map((item) => (
-            <Card foto={item}/>
+            <CardFoto foto={item}/>
           ))}
         </div>
         <div class="d-flex">
           { fotos2.map((item) => (
-            <Card foto={item}/>
+            <CardFoto foto={item}/>
           ))}
         </div>
 

@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Galeria from "./pages/Galeria";
 import Fotos from "./pages/Fotos"
+import Videos from "./pages/Videos";
 import MateriaisDidaticos from "./pages/MateriaisDidaticos";
 import Noticias from "./pages/Noticias";
 import PaginasUteis from "./pages/PaginasUteis";
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="inicio" element={<Inicio />}/>
           <Route path="galeria" element={<Galeria />}/>
           <Route path="fotos" element={<Fotos />}/>
+          <Route path="videos" element={<Videos />}/>
           <Route path="materiaisDidaticos" element={(<MateriaisDidaticos/>)}/>
           <Route path="noticias" element={(<Noticias/>)}/>
           <Route path="paginasUteis" element={(<PaginasUteis/>)}/>

@@ -9,8 +9,14 @@ export default function Breadcrumb (props) {
         <nav class="br-breadcrumb" aria-label="Breadcrumbs">
         <ol class="crumb-list" role="list">
             <li class="crumb home"><Link class="br-button circle" to="/inicio"><span class="sr-only">Página inicial</span><FontAwesomeIcon icon={faHome}/></Link></li>
-            <li class="crumb" data-active="active"><FontAwesomeIcon icon={faChevronRight}/><span tabindex="0" aria-current="page">{props.screenName}</span>
-            </li>
+            {
+                 props.links && props.links.map((item) => (
+                    <li class="crumb">
+                        <FontAwesomeIcon icon={faChevronRight}/><Link to={item.link} >{item.nome}</Link>
+                    </li>
+                  ))
+            }
+            
         </ol>
         </nav>
     )

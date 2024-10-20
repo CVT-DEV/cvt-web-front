@@ -1,20 +1,13 @@
 import "@govbr-ds/core/dist/core.min.css";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faPenToSquare, faTrash, faVideo } from "@fortawesome/free-solid-svg-icons";
-import Overlay from "./Overlay";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Overlay from "../Overlay";
 
-export default function Card (props) {
-    const navigate = useNavigate();
+export default function CardFoto (props) {
     const [ isModalFotoOpen, setIsModalFotoOpen ] = useState(false)
     const [ isModalDeletarOpen, setIsModalDeletarOpen ] = useState(false);
     const [ isModalEditarOpen, setIsModalEditarOpen ] = useState(false);
-
-    function handleClick(name) {
-        if (name==="Fotos") navigate('/fotos');
-        else navigate('/videos');
-      }
 
       function openModalFoto () {
         setIsModalFotoOpen(true);
@@ -42,23 +35,6 @@ export default function Card (props) {
 
     return(
         <>
-        {
-            props.toPage ? (
-                <div class="col-sm-6 col-md-4 col-lg-3" style={styles.toPageContainer} onClick={() => handleClick(props.name)}>
-                <div class="br-card">
-                    <div class="card-content" style={styles.cardContent}>
-                    <FontAwesomeIcon 
-                        icon={ props.name==="Fotos" ? (faCamera) : (faVideo) } 
-                        size="6x" 
-                        color="var(--blue-warm-vivid-70)"
-                        />
-                    </div>
-                    <div class="card-header" style={styles.cardHeader}>
-                    <h3 style={styles.text} class="font-type">{props.name}</h3>
-                    </div>
-                </div>
-                </div>
-            ) : (
             <div class="col-sm-6 col-md-4 col-lg-3" style={styles.fotoCardContainer}>
                 <div class="br-card">
                     <div class="card-header">
@@ -88,8 +64,6 @@ export default function Card (props) {
                 <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-foto" foto={props.foto} />
 
                 </div>
-                )
-        }
         </>
     )
 }
@@ -97,7 +71,6 @@ export default function Card (props) {
 const styles = {
     toPageContainer: {
         margin: "16px 16px",
-        cursor: "pointer"
     },
     fotoCardContainer: {
         margin: "16px 16px"

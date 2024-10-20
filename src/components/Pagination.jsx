@@ -6,8 +6,6 @@ import "@govbr-ds/core/dist/core.min.css";
 
 export default function Pagination ({ totalPages, page, onChange, onNext, onPrev}) {
 
-    console.log(totalPages);
-
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1); 
 
     return(
