@@ -1,20 +1,31 @@
 import React from "react";
 import Breadcrumb from "../components/Breadcrumb";
+import CardVideo from "../components/Cards/CardVideo";
 import { api } from "../services/api";
 import { useState, useEffect } from "react";
-import CardVideo from "../components/Cards/CardVideo";
 
 export default function Videos() {
 
-    const [ fotos1, setFotos1 ] = useState([]);
-    const [ fotos2, setFotos2 ] = useState([]);
-
-    //const [ videos1, setVideos1 ] = useState([]);
-    //const [ videos2, setVideos2 ] = useState([]);
-
-    let videos = []
+    const [videos, setVideos] = useState([]);
 
     async function getVideos () {
+        await api.get("/videos", {
+            headers: {
+                'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
+            }
+        })
+          .then((response) => {
+            setVideos(response.data);
+            
+            console.log(videos);
+          })
+          .catch((error) => { 
+            console.log(error);   
+            }
+        );
+      }
+
+    /*async function getVideos (setVideos) {
         await api.get('/videos', {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token')
@@ -24,17 +35,20 @@ export default function Videos() {
             //const totalPages = Math.ceil( response.data.totalFotos / DEFAULT_PAGE_SIZE);
             //setTotalPages(totalPages);
 
-            const videos = response.data;
+            const listaVideos = response.data;
+            setVideos(listaVideos);
+
             console.log(videos);
+            console.log(response.data);
         })
         .catch((error) => {
             console.log(error);   
           })
-    }
+    }*/
 
     useEffect(() => {
         getVideos();
-    },[])
+        },[]);
 
   return (
     <>
@@ -45,16 +59,9 @@ export default function Videos() {
             </div>
 
             <div class="d-flex">
-                <CardVideo/>
-                <CardVideo/>
-                <CardVideo/>
-                <CardVideo/>
-            </div>
-            <div class="d-flex">
-                <CardVideo/>
-                <CardVideo/>
-                <CardVideo/>
-                <CardVideo/>
+            { videos.map((item) => (
+                <CardVideo video={item}/>
+            ))}
             </div>
         </div>
 
