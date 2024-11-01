@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 export default function Videos() {
 
     const [videos, setVideos] = useState([]);
+    const [ videos1, setVideos1 ] = useState([]);
+    const [ videos2, setVideos2 ] = useState([]);
 
     async function getVideos () {
         await api.get("/videos", {
@@ -16,35 +18,18 @@ export default function Videos() {
         })
           .then((response) => {
             setVideos(response.data);
-            
+            setVideos1(videos.slice(0,4));
+            setVideos2(videos.slice(4));
+
             console.log(videos);
           })
           .catch((error) => { 
             console.log(error);   
             }
         );
+
+
       }
-
-    /*async function getVideos (setVideos) {
-        await api.get('/videos', {
-            headers: {
-              'x-access-token': localStorage.getItem('@cvtespacial-web/token')
-            },
-          })
-        .then((response) => {
-            //const totalPages = Math.ceil( response.data.totalFotos / DEFAULT_PAGE_SIZE);
-            //setTotalPages(totalPages);
-
-            const listaVideos = response.data;
-            setVideos(listaVideos);
-
-            console.log(videos);
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);   
-          })
-    }*/
 
     useEffect(() => {
         getVideos();
@@ -59,7 +44,15 @@ export default function Videos() {
             </div>
 
             <div class="d-flex">
-            { videos.map((item) => (
+            { 
+            videos1.map((item) => (
+                <CardVideo video={item}/>
+            ))}
+            </div>
+
+            <div class="d-flex">
+            { 
+              videos2.map((item) => (
                 <CardVideo video={item}/>
             ))}
             </div>
