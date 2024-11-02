@@ -9,13 +9,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Overlay from "../components/Overlay";
 
 export default function Fotos () {
+    const DEFAULT_PAGE = 1;
+    const DEFAULT_PAGE_SIZE = 8;
+    
     const [ fotos1, setFotos1 ] = useState([]);
     const [ fotos2, setFotos2 ] = useState([]);
     const [ totalPages, setTotalPages ] = useState(1);
     const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
-
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_PAGE_SIZE = 8;
 
     const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
 
@@ -40,7 +40,7 @@ export default function Fotos () {
             },
           })
         .then((response) => {
-            const totalPages = Math.ceil( response.data.totalFotos / DEFAULT_PAGE_SIZE);
+            const totalPages = Math.ceil( response.data.count / DEFAULT_PAGE_SIZE);
             setTotalPages(totalPages);
 
             const fotos = response.data.fotos;

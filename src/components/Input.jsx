@@ -36,7 +36,7 @@ export default function Input (props) {
                 <div class="col-sm-8 col-lg-5">
                 <div class="br-input">
                     <label for="input-default">{props.titulo}</label>
-                    <input name={props.name} type="text" id="input-default" placeholder={props.placeholder}/>
+                    <input name={props.name} type={props.file ? "file" : "text"} id="input-default" placeholder={props.placeholder}/>
                 </div>
                 </div>
             )
