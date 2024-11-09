@@ -5,8 +5,9 @@ import ModalDeletarFoto from "./Modais/ModalDeletarFoto";
 import ModalAdicionarFoto from "./Modais/ModalAdicionarFoto";
 import ModalEditarFoto from "./Modais/ModalEditarFoto";
 import ModalAdicionarVideo from "./Modais/Videos/ModalAdicionarVideo";
+import ModalDeletarVideo from "./Modais/Videos/ModalDeletarVideo";
 
-export default function Overlay ({ isOpen, onClose, type, foto }) {
+export default function Overlay ({ isOpen, onClose, type, foto, video }) {
 
     return (
         <>
@@ -20,7 +21,8 @@ export default function Overlay ({ isOpen, onClose, type, foto }) {
                             : type==="deletar-foto" ? <ModalDeletarFoto onClose={onClose} idFoto={foto.id} />
                             : type==="adicionar-foto" ? <ModalAdicionarFoto onClose={onClose} />
                             : type==="editar-foto" ? <ModalEditarFoto onClose={onClose} idFoto={foto.id} />
-                            : type==="adicionar-video" && <ModalAdicionarVideo onClose={onClose} />
+                            : type==="adicionar-video" ? <ModalAdicionarVideo onClose={onClose} />
+                            : type==="deletar-video" && <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
                          }
                     </div>
                 </div>
