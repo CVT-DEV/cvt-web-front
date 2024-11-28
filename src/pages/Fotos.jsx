@@ -34,7 +34,6 @@ export default function Fotos () {
     async function getFotos (page) {
         await api.get('/fotos', {
             headers: {
-              'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
               'page': DEFAULT_PAGE * (currentPage - 1),
               'limit': DEFAULT_PAGE_SIZE
             },

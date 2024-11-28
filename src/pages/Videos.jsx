@@ -34,7 +34,6 @@ export default function Videos() {
     async function getVideos () {
         await api.get('/videos', {
             headers: {
-                'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
                 'page': DEFAULT_PAGE * (currentPage - 1),
                 'limit': DEFAULT_PAGE_SIZE
             }
