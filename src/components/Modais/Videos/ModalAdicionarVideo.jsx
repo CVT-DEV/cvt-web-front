@@ -11,7 +11,6 @@ export default function ModalAdicionarVideo({ onClose }) {
 
         const form = e.target;
         const formData = new FormData(form);
-        formData.append("imagem", image);
         const formJson = Object.fromEntries(formData.entries());
 
         await api.post('/videos', formJson, {
@@ -39,7 +38,7 @@ export default function ModalAdicionarVideo({ onClose }) {
                 <div class="br-modal-body" style={styles.modalBody}>
                     <Input name="titulo" titulo="Título" placeholder="Título" />
                     <Input name="url" titulo="URL do vídeo" placeholder="Ex.: https://www.xxxxxxx.xxx" />
-                    <Input name="image" titulo="Imagem" placeholder="Faça o upload da imagem aqui" file={true} onChange={ (e) => { setImage(e.target.files[0]) }} />
+                    <Input name="image" titulo="Imagem" placeholder="Faça o upload da imagem aqui" file={true}/>
                     <Input name="categoria" titulo="Categoria" placeholder="Categoria" />
                     <Input name="fonte" titulo="fonte" placeholder="Fonte" />
                 </div>
