@@ -34,7 +34,7 @@ export default function ModalAdicionarVideo({ onClose }) {
                 <button class="br-button close circle" type="button" data-dismiss="br-modal" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
-            <form method="post" onSubmit={adicionarVideo}>
+            <form  action="http://localhost:3333/videos" method="POST" enctype="multipart/form-data">
                 <div class="br-modal-body" style={styles.modalBody}>
                     <Input name="titulo" titulo="Título" placeholder="Título" />
                     <Input name="url" titulo="URL do vídeo" placeholder="Ex.: https://www.xxxxxxx.xxx" />
