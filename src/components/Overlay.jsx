@@ -12,6 +12,7 @@ import ModalEditarVideo from "./Modais/Videos/ModalEditarVideo"
 
 import ModalDeletarMaterial from "./Modais/Materiais/ModalDeletarMaterial";
 import ModalAdicionarMaterial from "./Modais/Materiais/ModalAdicionarMaterial";
+import ModalEditarMaterial from "./Modais/Materiais/ModalEditarMaterial";
 
 export default function Overlay ({ isOpen, onClose, type, foto, video, material }) {
 
@@ -31,7 +32,8 @@ export default function Overlay ({ isOpen, onClose, type, foto, video, material 
                             : type==="deletar-video" ? <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
                             : type==="editar-video" ? <ModalEditarVideo onClose={onClose} idVideo={video.id} />
                             : type==="deletar-material" ? <ModalDeletarMaterial onClose={onClose} idMaterial={material.id} />
-                            : type==="adicionar-material" && <ModalAdicionarMaterial onClose={onClose} />
+                            : type==="adicionar-material" ? <ModalAdicionarMaterial onClose={onClose} />
+                            : type==="editar-material" && <ModalEditarMaterial onClose={onClose} idMaterial={material.id} />
                          }
                     </div>
                 </div>
