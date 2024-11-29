@@ -4,7 +4,6 @@ import { api } from "../../../services/api";
 import { useState } from "react";
 
 export default function ModalAdicionarVideo({ onClose }) {
-    const [ image, setImage ] = useState();
 
     async function adicionarVideo(e) {
         e.preventDefault();
@@ -12,10 +11,11 @@ export default function ModalAdicionarVideo({ onClose }) {
         const form = e.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
-
+        
         await api.post('/videos', formJson, {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
+              'Content-Type': 'multipart/form-data'
             },
           })
         .then((response) => {
@@ -27,6 +27,7 @@ export default function ModalAdicionarVideo({ onClose }) {
             console.log(error);   
           })
     }
+    
     return(
         <div class="div br-modal medium" aria-modal="true" role="dialog" aria-labelledby="modalalerttitle">
             <div class="br-modal-header">
@@ -34,11 +35,11 @@ export default function ModalAdicionarVideo({ onClose }) {
                 <button class="br-button close circle" type="button" data-dismiss="br-modal" aria-label="Fechar"><i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
-            <form  action="http://localhost:3333/videos" method="POST" enctype="multipart/form-data">
+            <form onSubmit={adicionarVideo}>
                 <div class="br-modal-body" style={styles.modalBody}>
                     <Input name="titulo" titulo="Título" placeholder="Título" />
                     <Input name="url" titulo="URL do vídeo" placeholder="Ex.: https://www.xxxxxxx.xxx" />
-                    <Input name="image" titulo="Imagem" placeholder="Faça o upload da imagem aqui" file={true}/>
+                    <Input name="image" titulo="Imagem" placeholder="Faça o upload da imagem aqui" file={true} required/>
                     <Input name="categoria" titulo="Categoria" placeholder="Categoria" />
                     <Input name="fonte" titulo="fonte" placeholder="Fonte" />
                 </div>
