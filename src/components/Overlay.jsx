@@ -1,11 +1,14 @@
 import "@govbr-ds/core/dist/core.min.css";
 import ModalSair from "./Modais/ModalSair";
+
 import ModalFoto from "./Modais/ModalFoto";
 import ModalDeletarFoto from "./Modais/ModalDeletarFoto";
 import ModalAdicionarFoto from "./Modais/ModalAdicionarFoto";
 import ModalEditarFoto from "./Modais/ModalEditarFoto";
+
 import ModalAdicionarVideo from "./Modais/Videos/ModalAdicionarVideo";
 import ModalDeletarVideo from "./Modais/Videos/ModalDeletarVideo";
+import ModalEditarVideo from "./Modais/Videos/ModalEditarVideo"
 
 export default function Overlay ({ isOpen, onClose, type, foto, video }) {
 
@@ -22,7 +25,8 @@ export default function Overlay ({ isOpen, onClose, type, foto, video }) {
                             : type==="adicionar-foto" ? <ModalAdicionarFoto onClose={onClose} />
                             : type==="editar-foto" ? <ModalEditarFoto onClose={onClose} idFoto={foto.id} />
                             : type==="adicionar-video" ? <ModalAdicionarVideo onClose={onClose} />
-                            : type==="deletar-video" && <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
+                            : type==="deletar-video" ? <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
+                            : type==="editar-video" && <ModalEditarVideo onClose={onClose} idVideo={video.id} />
                          }
                     </div>
                 </div>

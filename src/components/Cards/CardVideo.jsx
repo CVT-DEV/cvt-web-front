@@ -55,6 +55,7 @@ export default function CardVideo ({ video }) {
                 </div>
 
                 <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-video" video={video}/>
+                <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-video" video={video}/>
                 </div>
         </>
     )
