@@ -1,5 +1,5 @@
 import "@govbr-ds/core/dist/core.min.css";
-import { api } from "../../services/api";
+import { api } from "../../../services/api";
 
 export default function ModalDeletar({ onClose, idFoto }) {
 

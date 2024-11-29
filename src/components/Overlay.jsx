@@ -1,10 +1,10 @@
 import "@govbr-ds/core/dist/core.min.css";
 import ModalSair from "./Modais/ModalSair";
 
-import ModalFoto from "./Modais/ModalFoto";
-import ModalDeletarFoto from "./Modais/ModalDeletarFoto";
-import ModalAdicionarFoto from "./Modais/ModalAdicionarFoto";
-import ModalEditarFoto from "./Modais/ModalEditarFoto";
+import ModalFoto from "./Modais/Fotos/ModalFoto";
+import ModalDeletarFoto from "./Modais/Fotos/ModalDeletarFoto";
+import ModalAdicionarFoto from "./Modais/Fotos/ModalAdicionarFoto";
+import ModalEditarFoto from "./Modais/Fotos/ModalEditarFoto";
 
 import ModalAdicionarVideo from "./Modais/Videos/ModalAdicionarVideo";
 import ModalDeletarVideo from "./Modais/Videos/ModalDeletarVideo";
