@@ -1,29 +1,27 @@
 import React from "react";
+import Breadcrumb from "../components/Breadcrumb";
 
 function PaginasUteis() {
 
   return (
     <>
-        <div style={styles.container}>
-          <h3 class="font-type">Páginas Úteis</h3>
+        <div class="column" style={styles.content}>
+            <div class="container-lg" style={styles.containerLg}>
+                <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Páginas Úteis</h1>
+                <Breadcrumb links={ [ { nome: "Páginas Úteis" } ] } />
+            </div>
         </div>
     </>
   );
 }
 
 const styles = {
-  container: {
-    width: 884,
-    height: 469,
-    textAlign: "center"
+  content: {
+      paddingBottom: "48px"
   },
-  subtitle: {
-    fontSize:	"var(--font-size-scale-up-04)",
-    fontWeight:	"var(--font-weight-medium)",
-    lineHeight:	"var(--font-line-height-low)",
-    color: "var(--blue-warm-vivid-70)",
-    marginBottom: "var(--spacing-scale-2xh)",
-    marginTop: "var(--spacing-scale-3xh)"
+  containerLg: {
+    display: "flex",
+    alignItems: "center"
   }
 }
 

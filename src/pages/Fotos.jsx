@@ -2,23 +2,51 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { api } from "../services/api";
 import Breadcrumb from "../components/Breadcrumb";
-import Card from "../components/Card";
+import CardFoto from "../components/Cards/CardFoto";
 import Pagination from "../components/Pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Overlay from "../components/Overlay";
 
 export default function Fotos () {
-    const [ fotos, setFotos ] = useState([]);
+    const DEFAULT_PAGE = 1;
+    const DEFAULT_PAGE_SIZE = 8;
+    
+    const [ fotos1, setFotos1 ] = useState([]);
+    const [ fotos2, setFotos2 ] = useState([]);
+    const [ totalPages, setTotalPages ] = useState(1);
+    const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
 
-    async function getFotos () {
+    const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
+
+    const handlePageChange = (value) => {  
+      setCurrentPage(value);  
+    };
+
+    const handleNextPage = (value, totalPages) => {
+      value < totalPages && setCurrentPage( value + 1 );
+    }
+
+    const handlePreviousPage = (value) => {
+      value > 1 && setCurrentPage( value - 1 );
+    }
+
+    async function getFotos (page) {
         await api.get('/fotos', {
             headers: {
-              'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
+              'page': DEFAULT_PAGE * (currentPage - 1),
+              'limit': DEFAULT_PAGE_SIZE
             },
           })
         .then((response) => {
-            console.log(response.data);
-            setFotos(response.data);
+            const totalPages = Math.ceil( response.data.count / DEFAULT_PAGE_SIZE);
+            setTotalPages(totalPages);
+
+            const fotos = response.data.fotos;
+            setFotos1(fotos.slice(0, 4));
+            setFotos2(fotos.slice(4));
+
+            console.log(fotos);
         })
         .catch((error) => {
             console.log(error);   
@@ -26,31 +54,44 @@ export default function Fotos () {
     }
 
     useEffect(() => {
-        getFotos();
-    }, [])
+        getFotos(currentPage);
+    }, [currentPage])
+
+    function openModalAdicionar () {
+      setIsModalAdicionarOpen(true);
+    }
+
+    function closeModalAdicionar() {
+      setIsModalAdicionarOpen(false);
+    }
 
     return(
         <>
         <div class="column" style={styles.content}>
         <div class="container-lg" style={styles.containerLg}>
             <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Fotos</h1>
-            <Breadcrumb screenName="Galeria" />
-            <button class="br-sign-in primary small" type="button" style={styles.buttonNovo}>
+            <Breadcrumb links={[ { nome:"Galeria", link:"/galeria" }, { nome: "Fotos"} ]} />
+            <button class="br-sign-in primary small" type="button" style={styles.buttonNovo} onClick={openModalAdicionar}>
                 <FontAwesomeIcon icon={faPlus}/>         
                 <span class="d-sm-inline">Novo</span>
               </button>
         </div>
         
-        <div class="d-flex" style={styles.dFlex}>
-            { fotos.forEach(
-                (foto) => {
-                    <Card key={foto.id} foto={foto} />
-                }
-            )}
+        <div class="d-flex">
+          { fotos1.map((item) => (
+            <CardFoto foto={item}/>
+          ))}
+        </div>
+        <div class="d-flex">
+          { fotos2.map((item) => (
+            <CardFoto foto={item}/>
+          ))}
         </div>
 
-        <Pagination/>
+        <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
         </div>
+
+        <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-foto"/>
         </>
     )
 }
@@ -62,10 +103,6 @@ const styles = {
     containerLg: {
       display: "flex",
       alignItems: "center"
-    },
-    dFlex: {
-        display: "flex",
-        justifyContent: "space-around"
     },
     buttonNovo: {
         marginLeft: "auto"
