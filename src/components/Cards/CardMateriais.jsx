@@ -1,21 +1,14 @@
 import "@govbr-ds/core/dist/core.min.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash, faDownload, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash, faDownload } from "@fortawesome/free-solid-svg-icons";
 import Overlay from "../Overlay";
+import { Link } from "react-router-dom";
+import preparaFoto from "../../services/preparaFoto";
 
 export default function CardMaterial (props) {
-    const [ isModalMateriaisOpen, setIsModalMateriaisOpen ] = useState(false)
     const [ isModalDeletarOpen, setIsModalDeletarOpen ] = useState(false);
     const [ isModalEditarOpen, setIsModalEditarOpen ] = useState(false);
-
-      function openModalMateriais () {
-        setIsModalMateriaisOpen(true);
-      }
-
-      function closeModalMateriais () {
-        setIsModalMateriaisOpen(false);
-      }
 
       function openModalDeletar () {
         setIsModalDeletarOpen(true);
@@ -53,13 +46,14 @@ export default function CardMaterial (props) {
                         </div>
                     </div>
                     <div class="card-content" style={styles.cardContent}>
-                        <div class="card-area" style={styles.pdfIcon} onClick={openModalMateriais}>
-                            <FontAwesomeIcon icon={faFilePdf} size="3x" color="var(--blue-warm-vivid-70)"/>
+                        <Link to={preparaFoto(props.material.arquivo)}>
+                        <div class="card-area" style={styles.pdfIcon}>
+                                <FontAwesomeIcon icon={faDownload} size="3x" color="var(--blue-warm-vivid-70)"/>
                         </div>
+                        </Link>
                     </div>
                 </div>
 
-                <Overlay isOpen={isModalMateriaisOpen} onClose={closeModalMateriais} type="material" material={props.material} />
                 <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-material" material={props.material} />
                 <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-material" material={props.material} />
 
@@ -74,9 +68,6 @@ const styles = {
     },
     materialCardContainer: {
         margin: "16px 16px"
-    },
-    cardContent: {
-        justifyContent: "center"
     },
     pdfIcon: {
         margin: "16px"
