@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "../components/Breadcrumb";
+import CardNoticia from "../components/Cards/CardNoticia"
 
 function Noticias() {
 
@@ -10,6 +11,7 @@ function Noticias() {
                 <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Notícias</h1>
                 <Breadcrumb links={ [ { nome: "Notícias" } ] } />
             </div>
+            <CardNoticia/>
             </div>
     </>
   );
