@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import CardPratica from "../components/Cards/CardPratica";
 import Pagination from "../components/Pagination";
+import Overlay from "../components/Overlay";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { api } from "../services/api";
 
 function Praticas() {
@@ -11,6 +14,8 @@ function Praticas() {
 
   const [ totalPages, setTotalPages ] = useState(1);
   const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
+  
+  const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
   
   const [ praticas1, setPraticas1 ] = useState([]);
   const [ praticas2, setPraticas2 ] = useState([]);
@@ -25,6 +30,14 @@ function Praticas() {
 
   const handlePreviousPage = (value) => {
     value > 1 && setCurrentPage( value - 1 );
+  }
+
+  function openModalAdicionar () {
+    setIsModalAdicionarOpen(true);
+  }
+
+  function closeModalAdicionar() {
+    setIsModalAdicionarOpen(false);
   }
 
    async function getPraticas () {
@@ -59,6 +72,10 @@ function Praticas() {
             <div class="container-lg" style={styles.containerLg}>
                 <h1 class="font-type" style={{margin: "var(--spacing-scale-3x) 0 var(--spacing-scale-5x)"}}>Práticas</h1>
                 <Breadcrumb links={ [ { nome: "Práticas" } ] } />
+                <button class="br-sign-in primary small" type="button" style={styles.buttonNovo} onClick={openModalAdicionar}>
+                    <FontAwesomeIcon icon={faPlus}/>         
+                  <span class="d-sm-inline">Novo</span>
+                </button>
             </div>
 
             <div class="d-flex">
@@ -73,6 +90,8 @@ function Praticas() {
             </div>
 
             <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
+
+            <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-pratica"/>
             
             </div>
     </>
@@ -91,6 +110,9 @@ const styles = {
   containerLg: {
     display: "flex",
     alignItems: "center"
+  },
+  buttonNovo: {
+    marginLeft: "auto"
   }
 }
 
