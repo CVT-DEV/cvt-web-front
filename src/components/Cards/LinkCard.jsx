@@ -1,34 +1,24 @@
 import "@govbr-ds/core/dist/core.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faVideo, faQuestion, faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { faChartColumn, faSolarPanel, faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-export default function NavCard(props) {
-    let redirect;
-    const navigate = useNavigate();
+export default function RedirectCard(props) {
 
     function switchIcon(name) {
         switch(name) {
-            case "Fotos":
-                redirect = "/fotos";
-                return faCamera;
-            case "Vídeos":
-                redirect = "/videos";
-                return faVideo;
-            case "Práticas":
-                redirect  = "/praticas";
-                return faScrewdriverWrench;
+            case "Grafana":
+                return faChartColumn;
+            case "Node-Red":
+                return faSolarPanel;
             default:
                 return faQuestion;
         }
     }
-
-    function handleClick() {
-        navigate(redirect);
-      }
     
     return(
-        <div class="col-sm-6 col-md-4 col-lg-3" style={styles.toPageContainer} onClick={() => handleClick(props.name)}>
+        <div class="col-sm-6 col-md-4 col-lg-3" style={styles.toPageContainer}>
+            <Link to={props.link}>
                 <div class="br-card">
                     <div class="card-content" style={styles.cardContent}>
                     <FontAwesomeIcon 
@@ -41,6 +31,7 @@ export default function NavCard(props) {
                     <h3 style={styles.text} class="font-type">{props.name}</h3>
                     </div>
                 </div>
+                </Link>
                 </div>
     )
 }

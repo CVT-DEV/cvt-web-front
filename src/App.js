@@ -13,6 +13,7 @@ import MateriaisDidaticos from "./pages/MateriaisDidaticos";
 import Noticias from "./pages/Noticias";
 import PaginasUteis from "./pages/PaginasUteis";
 import DiaEspacial from "./pages/DiaEspacial";
+import Praticas from "./pages/Praticas";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="noticias" element={(<Noticias/>)}/>
           <Route path="paginasUteis" element={(<PaginasUteis/>)}/>
           <Route path="diaEspacial" element={(<DiaEspacial/>)}/>
+          <Route path="praticas" element={(<Praticas/>)}/>
         </Route>
       </Routes>
     </BrowserRouter>
