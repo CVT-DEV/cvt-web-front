@@ -18,7 +18,11 @@ import ModalDeletarNoticia from "./Modais/Noticias/ModalDeletarNoticia";
 import ModalAdicionarNoticia from "./Modais/Noticias/ModalAdicionarNoticia"
 import ModalEditarNoticia from "./Modais/Noticias/ModalEditarNoticia";
 
-export default function Overlay ({ isOpen, onClose, type, foto, video, material, noticia }) {
+import ModalDeletarPagina from "./Modais/Paginas/ModalDeletarPagina";
+import ModalAdicionarPagina from "./Modais/Paginas/ModalAdicionarPagina";
+import ModalEditarPagina from "./Modais/Paginas/ModalEditarPagina";
+
+export default function Overlay ({ isOpen, onClose, type, foto, video, material, noticia, pagina }) {
 
     return (
         <>
@@ -40,7 +44,10 @@ export default function Overlay ({ isOpen, onClose, type, foto, video, material,
                             : type==="editar-material" ? <ModalEditarMaterial onClose={onClose} idMaterial={material.id} />
                             : type==="deletar-noticia" ? <ModalDeletarNoticia onClose={onClose} idNoticia={noticia.id} />
                             : type==="adicionar-noticia" ? <ModalAdicionarNoticia onClose={onClose} />
-                            : type==="editar-noticia" && <ModalEditarNoticia onClose={onClose} idNoticia={noticia.id} /> 
+                            : type==="editar-noticia" ? <ModalEditarNoticia onClose={onClose} idNoticia={noticia.id} /> 
+                            : type==="deletar-pagina" ? <ModalDeletarPagina onClose={onClose} idPagina={pagina.id} />
+                            : type==="adicionar-pagina" ? <ModalAdicionarPagina onClose={onClose}/>
+                            : type==="editar-pagina" && <ModalEditarPagina onClose={onClose} idPagina={pagina.id} />
 
                          }
                     </div>

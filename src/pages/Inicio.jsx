@@ -20,7 +20,7 @@ function Inicio() {
         <div style={styles.container}>
           <div style={styles.row}>
             <div style={styles.toPageDiv} onClick={() => handleClick('galeria')}>
-              <div style={styles.toPageText}>
+              <div class="mb-1" style={styles.toPageText}>
                 <p style={styles.pageName}>Galeria</p>
               </div>
               <div style={styles.toPageIcon}>
@@ -28,7 +28,7 @@ function Inicio() {
               </div>
             </div>
             <div style={styles.toPageDiv} onClick={() => handleClick('materiaisDidaticos')}>
-              <div style={styles.toPageText}>
+              <div class="mb-1" style={styles.toPageText}>
                   <p style={styles.pageName}>Materiais Didáticos</p>
               </div>
               <div style={styles.toPageIcon}>
@@ -36,7 +36,7 @@ function Inicio() {
               </div>
             </div>
             <div style={styles.toPageDiv} onClick={() => handleClick('noticias')}>
-              <div style={styles.toPageText}>
+              <div class="mb-1" style={styles.toPageText}>
                   <p style={styles.pageName}>Notícias</p>
               </div>
               <div style={styles.toPageIcon}>
@@ -46,7 +46,7 @@ function Inicio() {
           </div>
           <div style={styles.row}>
             <div style={styles.toPageDiv} onClick={() => handleClick('paginasUteis')}>
-              <div style={styles.toPageText}>
+              <div class="mb-1" style={styles.toPageText}>
                   <p style={styles.pageName}>Páginas úteis</p>
               </div>
               <div style={styles.toPageIcon}>
@@ -54,7 +54,7 @@ function Inicio() {
               </div>
             </div>
             <div style={styles.toPageDiv} onClick={() => handleClick('diaEspacial')}>
-              <div style={styles.toPageText}>
+              <div class="mb-1" style={styles.toPageText}>
                   <p style={styles.pageName}>Dia Espacial</p>
                 </div>
                 <div style={styles.toPageIcon}>
@@ -99,7 +99,7 @@ const styles = {
     bottom: 0,
     width: "100%",
     height: 19.06,
-    textAlign: "center"
+    textAlign: "center",
   },
   toPageIcon: {
     position: "absolute",
