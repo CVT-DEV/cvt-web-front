@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 export default function List ({ paginas, categoria }) {
     const [ isModalDeletarOpen, setIsModalDeletarOpen ] = useState(false);
     const [ isModalEditarOpen, setIsModalEditarOpen ] = useState(false);
-    const [ paginaDeletar, setPaginaDeletar ] = useState();
+    const [ page, setPage ] = useState();
 
     function openModalDeletar (pagina) {
-        setPaginaDeletar(pagina);
+        setPage(pagina);
         setIsModalDeletarOpen(true);
       }
 
@@ -19,7 +19,8 @@ export default function List ({ paginas, categoria }) {
         setIsModalDeletarOpen(false);
       }
 
-      function openModalEditar() {
+      function openModalEditar(pagina) {
+        setPage(pagina);
         setIsModalEditarOpen(true);
       }
 
@@ -49,7 +50,7 @@ export default function List ({ paginas, categoria }) {
                                 <button class="br-button circle" type="button" aria-label="Ícone ilustrativo" onClick={() => {openModalDeletar(item)}}>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
-                                <button class="br-button circle" type="button" aria-label="Ícone ilustrativo" onClick={openModalEditar}>
+                                <button class="br-button circle" type="button" aria-label="Ícone ilustrativo" onClick={() => {openModalEditar(item)}}>
                                     <FontAwesomeIcon icon={faPenToSquare} />
                                 </button>
                             </div>
@@ -60,7 +61,8 @@ export default function List ({ paginas, categoria }) {
             })}
             </div>            
 
-            <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-pagina" pagina={paginaDeletar} />
+            <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-pagina" pagina={page} />
+            <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-pagina" pagina={page} />
 
             </div>
             )
