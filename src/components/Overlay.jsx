@@ -24,6 +24,7 @@ import ModalEditarPagina from "./Modais/Paginas/ModalEditarPagina";
 
 import ModalDeletarPratica from "./Modais/Praticas/ModalDeletarPratica";
 import ModalAdicionarPratica from "./Modais/Praticas/ModalAdicionarPratica";
+import ModalEditarPratica from "./Modais/Praticas/ModalEditarPratica";
 
 export default function Overlay ({ isOpen, onClose, type, foto, video, material, noticia, pagina, pratica }) {
 
@@ -52,7 +53,8 @@ export default function Overlay ({ isOpen, onClose, type, foto, video, material,
                             : type==="adicionar-pagina" ? <ModalAdicionarPagina onClose={onClose}/>
                             : type==="editar-pagina" ? <ModalEditarPagina onClose={onClose} idPagina={pagina.id} />
                             : type==="deletar-pratica" ? <ModalDeletarPratica onClose={onClose} idPratica={pratica.id}/>
-                            : type==="adicionar-pratica" && <ModalAdicionarPratica onClose={onClose}/>
+                            : type==="adicionar-pratica" ? <ModalAdicionarPratica onClose={onClose}/>
+                            : type==="editar-pratica" && <ModalEditarPratica onClose={onClose} idPratica={pratica.id} />
 
                          }
                     </div>
