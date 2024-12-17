@@ -16,6 +16,7 @@ import ModalEditarMaterial from "./Modais/Materiais/ModalEditarMaterial";
 
 import ModalDeletarNoticia from "./Modais/Noticias/ModalDeletarNoticia";
 import ModalAdicionarNoticia from "./Modais/Noticias/ModalAdicionarNoticia"
+import ModalEditarNoticia from "./Modais/Noticias/ModalEditarNoticia";
 
 export default function Overlay ({ isOpen, onClose, type, foto, video, material, noticia }) {
 
@@ -38,7 +39,8 @@ export default function Overlay ({ isOpen, onClose, type, foto, video, material,
                             : type==="adicionar-material" ? <ModalAdicionarMaterial onClose={onClose} />
                             : type==="editar-material" ? <ModalEditarMaterial onClose={onClose} idMaterial={material.id} />
                             : type==="deletar-noticia" ? <ModalDeletarNoticia onClose={onClose} idNoticia={noticia.id} />
-                            : type==="adicionar-noticia" && <ModalAdicionarNoticia onClose={onClose} />
+                            : type==="adicionar-noticia" ? <ModalAdicionarNoticia onClose={onClose} />
+                            : type==="editar-noticia" && <ModalEditarNoticia onClose={onClose} idNoticia={noticia.id} /> 
 
                          }
                     </div>

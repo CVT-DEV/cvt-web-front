@@ -21,6 +21,11 @@ export default function CardNoticia ({ noticia }) {
         setIsModalEditarOpen(true);
       }
 
+      function closeModalEditar() {
+        setIsModalEditarOpen(false);
+      }
+
+
     return (
     <div class="row">
         <div class="col-md">
@@ -63,6 +68,7 @@ export default function CardNoticia ({ noticia }) {
             </div>
 
         <Overlay isOpen={isModalDeletarOpen} onClose={closeModalDeletar} type="deletar-noticia" noticia={noticia}/>
+        <Overlay isOpen={isModalEditarOpen} onClose={closeModalEditar} type="editar-noticia" noticia={noticia}/>
         
         </div>
     </div>
