@@ -28,6 +28,52 @@ import ModalEditarPratica from "./Modais/Praticas/ModalEditarPratica";
 
 export default function Overlay ({ isOpen, onClose, type, foto, video, material, noticia, pagina, pratica }) {
 
+    function switchModal(tipo) {
+        switch (tipo) {
+            case "sair":
+                return <ModalSair onClose={onClose} />
+            case "foto":
+                return <ModalFoto onClose={onClose} foto={foto} />
+            case "deletar-foto":
+                return <ModalDeletarFoto onClose={onClose} idFoto={foto.id} />
+            case "adicionar-foto":
+                return <ModalAdicionarFoto onClose={onClose} />
+            case "editar-foto":
+                return <ModalEditarFoto onClose={onClose} idFoto={foto.id} />
+            case "adicionar-video":
+                return <ModalAdicionarVideo onClose={onClose} />
+            case "deletar-video":
+                return <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
+            case "editar-video":
+                return <ModalEditarVideo onClose={onClose} idVideo={video.id} />
+            case "deletar-material" :
+                return <ModalDeletarMaterial onClose={onClose} idMaterial={material.id} />
+            case "adicionar-material" :
+                return <ModalAdicionarMaterial onClose={onClose} />
+            case "editar-material" :
+                return <ModalEditarMaterial onClose={onClose} idMaterial={material.id} />
+            case "deletar-noticia" :
+                return <ModalDeletarNoticia onClose={onClose} idNoticia={noticia.id} />
+            case "adicionar-noticia" :
+                return <ModalAdicionarNoticia onClose={onClose} />
+            case "editar-noticia" :
+                return <ModalEditarNoticia onClose={onClose} idNoticia={noticia.id} /> 
+            case "deletar-pagina" :
+                return <ModalDeletarPagina onClose={onClose} idPagina={pagina.id} />
+            case "adicionar-pagina" :
+                return <ModalAdicionarPagina onClose={onClose}/>
+            case "editar-pagina" :
+                return <ModalEditarPagina onClose={onClose} idPagina={pagina.id} />
+            case "deletar-pratica" :
+                return <ModalDeletarPratica onClose={onClose} idPratica={pratica.id}/>
+            case "adicionar-pratica" :
+                return <ModalAdicionarPratica onClose={onClose}/>
+            case "editar-pratica":
+                return <ModalEditarPratica onClose={onClose} idPratica={pratica.id} />
+            default:
+                return;
+        }
+    }
     return (
         <>
             {
@@ -35,27 +81,7 @@ export default function Overlay ({ isOpen, onClose, type, foto, video, material,
                 <div style={styles.overlay}>
                     <div style={styles.overlayBackground}>
                         {
-                            type==="sair" ? <ModalSair onClose={onClose} />
-                            : type==="foto" ? <ModalFoto onClose={onClose} foto={foto} />
-                            : type==="deletar-foto" ? <ModalDeletarFoto onClose={onClose} idFoto={foto.id} />
-                            : type==="adicionar-foto" ? <ModalAdicionarFoto onClose={onClose} />
-                            : type==="editar-foto" ? <ModalEditarFoto onClose={onClose} idFoto={foto.id} />
-                            : type==="adicionar-video" ? <ModalAdicionarVideo onClose={onClose} />
-                            : type==="deletar-video" ? <ModalDeletarVideo onClose={onClose} idVideo={video.id} />
-                            : type==="editar-video" ? <ModalEditarVideo onClose={onClose} idVideo={video.id} />
-                            : type==="deletar-material" ? <ModalDeletarMaterial onClose={onClose} idMaterial={material.id} />
-                            : type==="adicionar-material" ? <ModalAdicionarMaterial onClose={onClose} />
-                            : type==="editar-material" ? <ModalEditarMaterial onClose={onClose} idMaterial={material.id} />
-                            : type==="deletar-noticia" ? <ModalDeletarNoticia onClose={onClose} idNoticia={noticia.id} />
-                            : type==="adicionar-noticia" ? <ModalAdicionarNoticia onClose={onClose} />
-                            : type==="editar-noticia" ? <ModalEditarNoticia onClose={onClose} idNoticia={noticia.id} /> 
-                            : type==="deletar-pagina" ? <ModalDeletarPagina onClose={onClose} idPagina={pagina.id} />
-                            : type==="adicionar-pagina" ? <ModalAdicionarPagina onClose={onClose}/>
-                            : type==="editar-pagina" ? <ModalEditarPagina onClose={onClose} idPagina={pagina.id} />
-                            : type==="deletar-pratica" ? <ModalDeletarPratica onClose={onClose} idPratica={pratica.id}/>
-                            : type==="adicionar-pratica" ? <ModalAdicionarPratica onClose={onClose}/>
-                            : type==="editar-pratica" && <ModalEditarPratica onClose={onClose} idPratica={pratica.id} />
-
+                            switchModal(type)
                          }
                     </div>
                 </div>

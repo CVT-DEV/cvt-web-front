@@ -64,7 +64,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    paddingBottom: "48px"
+    paddingBottom: "var(--spacing-scale-8x)"
 },
   container: {
     width: 884
