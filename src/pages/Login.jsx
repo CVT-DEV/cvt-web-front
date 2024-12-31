@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "../components/Input";
 import Message from "../components/Message";
+import Loading from "../components/Loading";
+
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useState } from "react";
@@ -9,6 +11,7 @@ function TelaLogin() {
 
   const navigate = useNavigate();
   const [ error , setError ] = useState("");
+  const [ loading, setLoading ] = useState(false);
 
   async function handleLogin (e) {
 
@@ -18,17 +21,22 @@ function TelaLogin() {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     
+    setLoading(true);
     await api.post('/admin/login', formJson)
     .then(function (response) {
 
       const token = response.headers['x-access-token'];
       localStorage.setItem('@cvtespacial-web/token', token);
 
+      setLoading(false);
+
       console.log(localStorage.getItem('@cvtespacial-web/token'));
 
       navigate("/inicio");
     })
     .catch(function (error) {
+      setLoading(false);
+
       console.log(error);
       
       setError("Usuário e/ou senha inválidos.");    
@@ -49,7 +57,7 @@ function TelaLogin() {
               <Input name="senha" placeholder="Insira sua senha" login={true} />
             </div>
             <button class="br-sign-in small primary mt-3 mt-sm-0 ml-sm-3" type="submit">   
-              Entrar
+            {loading ? <Loading/> : <>Entrar</>}
             </button>
           </form>
         </div>

@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import CardNoticia from "../components/Cards/CardNoticia"
 import Pagination from "../components/Pagination";
 import Overlay from "../components/Overlay";
+import Loading from "../components/Loading";
 
 import { api } from "../services/api";
 import { useState, useEffect } from "react";
@@ -18,7 +19,7 @@ function Noticias() {
   const [ totalPages, setTotalPages ] = useState(1);
   const [ currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
   const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
-  
+  const [ loading, setLoading ] = useState(false);
 
   const handlePageChange = (value) => {  
     setCurrentPage(value);  
@@ -33,6 +34,7 @@ function Noticias() {
   }
 
   async function getNoticias () {
+    setLoading(true);
     await api.get('/noticias', {
       headers: {
           'page': DEFAULT_PAGE * (currentPage - 1),
@@ -46,9 +48,12 @@ function Noticias() {
         const dados = response.data.noticias;
         setNoticias(dados);
 
+        setLoading(false);
+
         console.log(dados);
     })
     .catch((error) => {
+        setLoading(false);
         console.log(error);   
       })
 }
@@ -77,14 +82,17 @@ function closeModalAdicionar() {
                 </button>
             </div>
 
-            <div class="column">
-              { noticias.map((item) => (
-                <CardNoticia noticia={item}/>
-              ))}
-            </div>
+            {loading ? <Loading query={true} /> : 
+              <>
+                <div class="column">
+                  { noticias.map((item) => (
+                    <CardNoticia noticia={item}/>
+                  ))}
+                </div>
 
-            <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
-            
+                <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
+              </>
+            }
             <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-noticia"/>
             
         </div>

@@ -4,6 +4,7 @@ import { api } from "../services/api";
 import Breadcrumb from "../components/Breadcrumb";
 import CardFoto from "../components/Cards/CardFoto";
 import Pagination from "../components/Pagination";
+import Loading from "../components/Loading";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Overlay from "../components/Overlay";
@@ -19,6 +20,8 @@ export default function Fotos () {
 
     const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
 
+    const [ loading, setLoading ] = useState(false);
+
     const handlePageChange = (value) => {  
       setCurrentPage(value);  
     };
@@ -32,6 +35,7 @@ export default function Fotos () {
     }
 
     async function getFotos (page) {
+      setLoading(true);
         await api.get('/fotos', {
             headers: {
               'page': DEFAULT_PAGE * (currentPage - 1),
@@ -46,9 +50,13 @@ export default function Fotos () {
             setFotos1(fotos.slice(0, 4));
             setFotos2(fotos.slice(4));
 
+            setLoading(false);
+
             console.log(fotos);
         })
         .catch((error) => {
+          setLoading(false);
+
             console.log(error);   
           })
     }
@@ -77,7 +85,9 @@ export default function Fotos () {
               </button>
         </div>
         
-        <div class="d-flex">
+        {loading ? <Loading query={true} /> : 
+        <>
+          <div class="d-flex">
           { fotos1.map((item) => (
             <CardFoto foto={item}/>
           ))}
@@ -89,6 +99,8 @@ export default function Fotos () {
         </div>
 
         <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
+        </>}
+
         </div>
 
         <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-foto"/>

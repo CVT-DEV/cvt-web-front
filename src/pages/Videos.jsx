@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import CardVideo from "../components/Cards/CardVideo";
 import Pagination from "../components/Pagination";
 import Overlay from "../components/Overlay";
+import Loading from "../components/Loading";
 
 import { api } from "../services/api";
 import { useState, useEffect } from "react";
@@ -19,6 +20,7 @@ export default function Videos() {
     const [ totalPages, setTotalPages ] = useState(1);
     const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
+    const [ loading, setLoading ] = useState(false);
 
     const handlePageChange = (value) => {  
       setCurrentPage(value);  
@@ -33,6 +35,7 @@ export default function Videos() {
     }
 
     async function getVideos () {
+      setLoading(true);
         await api.get('/videos', {
             headers: {
                 'page': DEFAULT_PAGE * (currentPage - 1),
@@ -47,9 +50,11 @@ export default function Videos() {
             setVideos1(videos.slice(0,4));
             setVideos2(videos.slice(4));
 
+            setLoading(false);
             console.log(videos);
           })
           .catch((error) => { 
+            setLoading(false);
             console.log(error);   
             }
         );
@@ -81,6 +86,8 @@ export default function Videos() {
               </button>
             </div>
 
+            {loading ? <Loading query={true} /> : 
+        <>
             <div class="d-flex">
             { 
             videos1.map((item) => (
@@ -96,6 +103,8 @@ export default function Videos() {
             </div>
 
             <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
+            </>
+}
 
             <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-video"/>
         </div>

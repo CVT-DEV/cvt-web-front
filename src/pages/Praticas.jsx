@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import CardPratica from "../components/Cards/CardPratica";
 import Pagination from "../components/Pagination";
 import Overlay from "../components/Overlay";
+import Loading from "../components/Loading";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -19,6 +20,8 @@ function Praticas() {
   
   const [ praticas1, setPraticas1 ] = useState([]);
   const [ praticas2, setPraticas2 ] = useState([]);
+
+  const [ loading, setLoading ] = useState(false);
 
   const handlePageChange = (value) => {  
     setCurrentPage(value);  
@@ -41,6 +44,7 @@ function Praticas() {
   }
 
    async function getPraticas () {
+    setLoading(true);
       await api.get('/praticas', {
         headers: {
           'page': DEFAULT_PAGE * (currentPage - 1),
@@ -55,9 +59,11 @@ function Praticas() {
         setPraticas1(praticas.slice(0, 4));
         setPraticas2(praticas.slice(4));
   
+        setLoading(false);
         console.log(praticas);
       })
       .catch((error) => {
+          setLoading(false);
           console.log(error);   
         })
   }
@@ -78,6 +84,8 @@ function Praticas() {
                 </button>
             </div>
 
+            {loading ? <Loading query={true} /> : 
+            <>
             <div class="d-flex">
               { praticas1.map((item) => (
                 <CardPratica pratica={item}/>
@@ -90,7 +98,8 @@ function Praticas() {
             </div>
 
             <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
-
+            </>
+            }
             <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-pratica"/>
             
             </div>

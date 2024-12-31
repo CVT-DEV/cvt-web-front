@@ -2,6 +2,7 @@ import React from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import List from "../components/List"
 import Overlay from "../components/Overlay";
+import Loading from "../components/Loading";
 
 import { useState, useEffect } from "react";
 import { api } from "../services/api";
@@ -14,24 +15,30 @@ function PaginasUteis() {
 
   const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
 
-  async function getPaginas () {
-          await api.get('/paginas-uteis', {
-              headers: {
-              },
-            })
-          .then((response) => {
-  
-              const olimpiadasBrasileiras = response.data.olimpiadas;
-              setOlimpiadas(olimpiadasBrasileiras);
+  const [ loading, setLoading ] = useState(false);
 
-              const sitesRelevantes = response.data.sites;
-              setSites(sitesRelevantes);
-  
-              console.log(response.data);
+  async function getPaginas () {
+        setLoading(true);
+        await api.get('/paginas-uteis', {
+            headers: {
+            },
           })
-          .catch((error) => {
-              console.log(error);   
-            })
+        .then((response) => {
+
+            const olimpiadasBrasileiras = response.data.olimpiadas;
+            setOlimpiadas(olimpiadasBrasileiras);
+
+            const sitesRelevantes = response.data.sites;
+            setSites(sitesRelevantes);
+
+            setLoading(false);
+
+            console.log(response.data);
+        })
+        .catch((error) => {
+            setLoading(false);
+            console.log(error);   
+          })
       }
   
       useEffect(() => {
@@ -58,8 +65,12 @@ function PaginasUteis() {
                 </button>
             </div>
             
+            {loading ? <Loading query={true} /> : 
+              <>
               <List paginas={olimpiadas} categoria="Olimpíadas brasileiras de conhecimento"/>
               <List paginas={sites} categoria="Sites relevantes"/>
+              </>
+            }
 
               <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-pagina"/>
         </div>

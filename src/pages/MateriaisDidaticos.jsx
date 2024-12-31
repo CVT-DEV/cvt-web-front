@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import CardMaterial from "../components/Cards/CardMateriais";
 import Pagination from "../components/Pagination";
 import Overlay from "../components/Overlay";
+import Loading from "../components/Loading";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +15,7 @@ function MateriaisDidaticos() {
 
   const [ totalPages, setTotalPages ] = useState(1);
   const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE);
+  const [ loading, setLoading ] = useState(false);
   
   const [ isModalAdicionarOpen, setIsModalAdicionarOpen] = useState(false);
   const[ materiais1, setMateriais1 ] = useState([]);
@@ -40,6 +42,7 @@ function MateriaisDidaticos() {
   }
 
   async function getMateriaisDidaticos () {
+    setLoading(true);
     await api.get('/materiais', {
       headers: {
         'page': DEFAULT_PAGE * (currentPage - 1),
@@ -54,9 +57,12 @@ function MateriaisDidaticos() {
       setMateriais1(materiais.slice(0, 4));
       setMateriais2(materiais.slice(4));
 
+      setLoading(false);
+
       console.log(materiais);
     })
     .catch((error) => {
+        setLoading(false);
         console.log(error);   
       })
 }
@@ -77,6 +83,8 @@ useEffect(() => {
               </button>
             </div>
 
+            {loading ? <Loading query={true} /> : 
+        <>
             <div class="d-flex">
               { materiais1.map((item) => (
                 <CardMaterial material={item}/>
@@ -89,6 +97,8 @@ useEffect(() => {
             </div>
 
             <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} onNext={handleNextPage} onPrev={handlePreviousPage} />
+            </>
+}
 
             <Overlay isOpen={isModalAdicionarOpen} onClose={closeModalAdicionar} type="adicionar-material"/>
 
