@@ -1,8 +1,12 @@
 import "@govbr-ds/core/dist/core.min.css";
 import Input from "../../Input"
 import { api } from "../../../services/api";
+import { useState } from "react";
+import Loading from "../../Loading";
 
 export default function ModalAdicionarFoto({ onClose }) {
+
+    const [ loading, setLoading ] = useState(false);
 
     async function adicionarFoto(e) {
         e.preventDefault();
@@ -11,17 +15,20 @@ export default function ModalAdicionarFoto({ onClose }) {
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
 
+        setLoading(true);
         await api.post('/fotos', formJson, {
             headers: {
               'x-access-token': localStorage.getItem('@cvtespacial-web/token'),
             },
           })
         .then((response) => {
+            setLoading(false);
             console.log(response);
             onClose();
             window.location.reload();
         })
         .catch(function (error) {
+            setLoading(false);
             console.log(error);   
           })
 
@@ -43,7 +50,8 @@ export default function ModalAdicionarFoto({ onClose }) {
                 <div class="br-modal-footer justify-content-end">
                     <button class="br-button secondary" type="button" onClick={onClose}>Cancelar
                     </button>
-                    <button class="br-button primary ml-2" type="submit">Adicionar
+                    <button class="br-button primary ml-2" type="submit">
+                        { loading ? <Loading/> : <>Adicionar</>}
                     </button>
                 </div>
             </form>
